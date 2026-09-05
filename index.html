@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Secure Online Quiz</title>
+<title>Secure Online Quiz - 25 Questions</title>
 
 <link rel="icon" type="image/png" href="image.png">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -81,807 +81,312 @@
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-  const QUESTION_VISIBLE_TIME = 20;
+  const QUESTION_VISIBLE_TIME = 28;
   const QUESTION_TIME = 40;
 
-  const QUIZ_QUESTIONS = [
+     const QUIZ_QUESTIONS = [
+    /* 1 */
+    {
+      question: "In India, the first Co-operative Society was established in ____________.",
+      options: [
+        "1912",
+        "1904",
+        "1949",
+        "1919"
+      ],
+      correct: "1904"
+    },
+
+    /* 2 */
+    {
+      question: "__________ is based on the principle of interest, maximization of profits & exploitation.",
+      options: [
+        "Socialism",
+        "Capitalism",
+        "Co-operation",
+        "Trade Unionism"
+      ],
+      correct: "Capitalism"
+    },
+
+    /* 3 */
+    {
+      question: "An important document for the membership in a Co-operative Society is _______.",
+      options: [
+        "Minute book",
+        "Receipt",
+        "Passbook",
+        "Identity Card"
+      ],
+      correct: "Identity Card"
+    },
+
+    /* 4 */
+    {
+      question: "The Human Resource Management helps to improve the __________.",
+      options: [
+        "Production",
+        "Productivity",
+        "Power",
+        "Produce"
+      ],
+      correct: "Productivity"
+    },
+
+    /* 5 */
+    {
+      question: "What do you understand “S” in the defining SMART Goals?",
+      options: [
+        "Solution",
+        "Specific",
+        "Standard",
+        "Soft"
+      ],
+      correct: "Specific"
+    },
+
+    /* 6 */
+    {
+      question: "Which of the following helps the employee to improve their efficiency?",
+      options: [
+        "Development",
+        "Training",
+        "Promotion",
+        "Transfer"
+      ],
+      correct: "Training"
+    },
+
+    /* 7 */
+    {
+      question: "Oral examination of candidates for employment is ___________",
+      options: [
+        "Placement",
+        "Screening",
+        "Interview",
+        "Selection"
+      ],
+      correct: "Interview"
+    },
+
+    /* 8 */
+    {
+      question: "The highest authority in a Co-operative Society is:",
+      options: [
+        "Government",
+        "Management Committee",
+        "Registrar",
+        "General Body"
+      ],
+      correct: "General Body"
+    },
+
+    /* 9 */
+    {
+      question: "Competencies are the ___________",
+      options: [
+        "Knowledge",
+        "Skills",
+        "Behaviour",
+        "All of these"
+      ],
+      correct: "All of these"
+    },
+
+    /* 10 */
+    {
+      question: "HRM is ____________ in nature.",
+      options: [
+        "Pervasive",
+        "Evasive",
+        "Decisive",
+        "Inclusive"
+      ],
+      correct: "Pervasive"
+    },
+
+    /* 11 */
+    {
+      question: "The major source of cheap rural credit besides bank is ____________",
+      options: [
+        "Government",
+        "Cooperative Societies",
+        "Private Lenders",
+        "NBFCs"
+      ],
+      correct: "Cooperative Societies"
+    },
+
+    /* 12 */
+    {
+      question: "The Constitution of a Society is its ____________",
+      options: [
+        "Act",
+        "Rules",
+        "General Body",
+        "Bylaw"
+      ],
+      correct: "Bylaw"
+    },
+
+    /* 13 */
+    {
+      question: "Good employer employee relations are the backbone of all ____________",
+      options: [
+        "Personal activities",
+        "Human activities",
+        "Personnel activities",
+        "Personnel policies"
+      ],
+      correct: "Personnel activities"
+    },
+
+    /* 14 */
+    {
+      question: "Employees can be appraisal against ___________",
+      options: [
+        "Relative standards",
+        "Objective",
+        "Absolute standards",
+        "Group"
+      ],
+      correct: "Relative standards"
+    },
+
+    /* 15 */
+    {
+      question: "The binding up of a Co-operative Society means ___________",
+      options: [
+        "Registration",
+        "Liquidation",
+        "Amalgamation",
+        "Reconstruction"
+      ],
+      correct: "Liquidation"
+    },
+
+    /* 16 */
+    {
+      question: "The process of providing the trainees the information about their performance _______",
+      options: [
+        "Feedback",
+        "Observation",
+        "Suggestion",
+        "Research"
+      ],
+      correct: "Feedback"
+    },
+
+    /* 17 */
+    {
+      question: "___________ is a formal & detailed study of jobs.",
+      options: [
+        "Job enrichment",
+        "Job evaluation",
+        "Job classification",
+        "Job analysis"
+      ],
+      correct: "Job evaluation"
+    },
+
+    /* 18 */
+    {
+      question: "_______ has the right to sign in the identity card of a member of Co-operative Society.",
+      options: [
+        "Registrar",
+        "President",
+        "Secretary",
+        "Election Officer"
+      ],
+      correct: "Secretary"
+    },
+
+    /* 19 */
+    {
+      question: "A kind of future oriented training ______________",
+      options: [
+        "Employee training",
+        "Employability",
+        "Employee development",
+        "Employee potential"
+      ],
+      correct: "Employee development"
+    },
+
+    /* 20 */
+    {
+      question: "The members of a Co-operative Society have ____________ liability.",
+      options: [
+        "Limited",
+        "Unlimited",
+        "Joint",
+        "Joint & Several"
+      ],
+      correct: "Limited"
+    },
+
+    /* 21 */
+    {
+      question: "What is the meaning of the word “Co-operari”?",
+      options: [
+        "Mutual help",
+        "Working together",
+        "All for one & one for all",
+        "Each for all & all for each"
+      ],
+      correct: "Working together"
+    },
+
+    /* 22 */
+    {
+      question: "The objective of Co-operative society is _________",
+      options: [
+        "Profit",
+        "Service",
+        "Self help",
+        "Mutual help"
+      ],
+      correct: "Service"
+    },
+
+    /* 23 */
+    {
+      question: "One of the most popular methods of increasing employee responsibility & control is:",
+      options: [
+        "Outsourcing",
+        "Military model",
+        "Work teams",
+        "Manpower planning"
+      ],
+      correct: "Work teams"
+    },
+
+    /* 24 */
+    {
+      question: "Which of the following is not a type of Co-operative society?",
+      options: [
+        "Producer",
+        "Consumer",
+        "Retail",
+        "Housing"
+      ],
+      correct: "Retail"
+    },
+
+    /* 25 */
+    {
+      question: "Businessmen could get an opportunity to earn huge profits as the cost of ________",
+      options: [
+        "Employee",
+        "Employee & Employer",
+        "Employer",
+        "Superior"
+      ],
+      correct: "Employee"
+    }
+
+  ];
 
-/* 1 */
-{
-  question: "Which management thinker introduced Management by Objectives (MBO)?",
-  options: ["Henry Mintzberg","Peter Drucker","Frederick Taylor","Max Weber"],
-  correct: "Peter Drucker"
-},
-
-/* 2 */
-{
-  question: "The concept of bureaucratic organization was developed by:",
-  options: ["Max Weber","Henri Fayol","Elton Mayo","Chester Barnard"],
-  correct: "Max Weber"
-},
-
-/* 3 */
-{
-  question: "Which function of management ensures activities are carried out according to plan?",
-  options: ["Organizing","Directing","Staffing","Controlling"],
-  correct: "Controlling"
-},
-
-/* 4 */
-{
-  question: "Scalar chain refers to:",
-  options: ["Chain of command","Supply chain","Production chain","Financial chain"],
-  correct: "Chain of command"
-},
-
-/* 5 */
-{
-  question: "Which leadership theory focuses on leader traits?",
-  options: ["Behavioral theory","Contingency theory","Trait theory","Systems theory"],
-  correct: "Trait theory"
-},
-
-/* 6 */
-{
-  question: "Which concept focuses on customer satisfaction and long-term relationships?",
-  options: ["Product concept","Production concept","Selling concept","Marketing concept"],
-  correct: "Marketing concept"
-},
-
-/* 7 */
-{
-  question: "The BCG matrix was developed by:",
-  options: ["Boston Consulting Group","McKinsey & Company","Deloitte","KPMG"],
-  correct: "Boston Consulting Group"
-},
-
-/* 8 */
-{
-  question: "Which stage in the product life cycle usually has the highest profits?",
-  options: ["Introduction","Growth","Maturity","Decline"],
-  correct: "Maturity"
-},
-
-/* 9 */
-{
-  question: "Market penetration strategy involves:",
-  options: ["Increasing price","Increasing market share","Reducing production","Exporting products"],
-  correct: "Increasing market share"
-},
-
-/* 10 */
-{
-  question: "Customer Relationship Management (CRM) mainly aims to:",
-  options: ["Maintain customer loyalty","Reduce production cost","Increase tax","Reduce inventory"],
-  correct: "Maintain customer loyalty"
-},
-
-/* 11 */
-{
-  question: "Which accounting principle requires revenue to be recorded when earned?",
-  options: ["Matching principle","Accrual principle","Consistency principle","Conservatism principle"],
-  correct: "Accrual principle"
-},
-
-/* 12 */
-{
-  question: "Goodwill is classified as:",
-  options: ["Current asset","Fixed liability","Intangible asset","Revenue asset"],
-  correct: "Intangible asset"
-},
-
-/* 13 */
-{
-  question: "Trial balance helps in:",
-  options: ["Detecting all errors","Checking arithmetical accuracy","Calculating tax","Preparing audit report"],
-  correct: "Checking arithmetical accuracy"
-},
-
-/* 14 */
-{
-  question: "Which statement shows financial performance of a company?",
-  options: ["Balance sheet","Cash flow statement","Income statement","Budget report"],
-  correct: "Income statement"
-},
-
-/* 15 */
-{
-  question: "Depreciation is charged to:",
-  options: ["Reduce tax only","Increase capital","Increase profit","Allocate cost of asset"],
-  correct: "Allocate cost of asset"
-},
-
-/* 16 */
-{
-  question: "Which ratio measures liquidity?",
-  options: ["Current ratio","Debt ratio","Profit margin","ROI"],
-  correct: "Current ratio"
-},
-
-/* 17 */
-{
-  question: "Weighted Average Cost of Capital (WACC) is used for:",
-  options: ["Sales forecasting","Tax calculation","Investment decisions","Payroll management"],
-  correct: "Investment decisions"
-},
-
-/* 18 */
-{
-  question: "Capital structure refers to:",
-  options: ["Debt and equity mix","Assets and liabilities","Fixed assets","Current liabilities"],
-  correct: "Debt and equity mix"
-},
-
-/* 19 */
-{
-  question: "Which financial tool evaluates investment profitability?",
-  options: ["Ledger","Balance sheet","Trial balance","NPV"],
-  correct: "NPV"
-},
-
-/* 20 */
-{
-  question: "Time value of money means:",
-  options: ["Money loses value","Money today is worth more than future money","Money value is constant","Money only depends on taxes"],
-  correct: "Money today is worth more than future money"
-},
-
-/* 21 */
-{
-  question: "Inflation caused by increased production costs is called:",
-  options: ["Demand-pull inflation","Imported inflation","Structural inflation","Cost-push inflation"],
-  correct: "Cost-push inflation"
-},
-
-/* 22 */
-{
-  question: "Monetary policy in India is controlled by:",
-  options: ["NITI Aayog","State Bank of India","Reserve Bank of India","Ministry of Finance"],
-  correct: "Reserve Bank of India"
-},
-
-/* 23 */
-{
-  question: "Fiscal deficit refers to:",
-  options: ["Revenue minus expenditure","Expenditure minus revenue","Imports minus exports","Assets minus liabilities"],
-  correct: "Expenditure minus revenue"
-},
-
-/* 24 */
-{
-  question: "GDP measures:",
-  options: ["Population growth","Tax collection","Imports","Total production in a country"],
-  correct: "Total production in a country"
-},
-
-/* 25 */
-{
-  question: "A recession means:",
-  options: ["Rapid economic growth","Decline in economic activity","Inflation rise","Export growth"],
-  correct: "Decline in economic activity"
-},
-
-/* 26 */
-{
-  question: "Break-even point occurs when:",
-  options: ["Profit is maximum","Cost is zero","Sales are lowest","Profit equals zero"],
-  correct: "Profit equals zero"
-},
-
-/* 27 */
-{
-  question: "Contribution margin equals:",
-  options: ["Sales – Variable cost","Sales – Fixed cost","Profit – Tax","Revenue – Expenses"],
-  correct: "Sales – Variable cost"
-},
-
-/* 28 */
-{
-  question: "Standard costing is used for:",
-  options: ["Budget control","Financial audit","Cost comparison","Inventory valuation"],
-  correct: "Cost comparison"
-},
-
-/* 29 */
-{
-  question: "Variance analysis is used in:",
-  options: ["Financial planning","Marketing research","Human resource management","Cost control"],
-  correct: "Cost control"
-},
-
-/* 30 */
-{
-  question: "Flexible budget adjusts according to:",
-  options: ["Production level","Profit level","Tax rate","Interest rate"],
-  correct: "Production level"
-},
-
-/* 31 */
-{
-  question: "Administrative theory was developed by:",
-  options: ["Henri Fayol","Max Weber","Elton Mayo","Taylor"],
-  correct: "Henri Fayol"
-},
-
-/* 32 */
-{
-  question: "Good governance emphasizes:",
-  options: ["Bureaucracy only","Corruption","Monopoly","Transparency"],
-  correct: "Transparency"
-},
-
-/* 33 */
-{
-  question: "Decentralization means:",
-  options: ["Central authority only","Delegating authority to lower levels","Removing authority","Increasing hierarchy"],
-  correct: "Delegating authority to lower levels"
-},
-
-/* 34 */
-{
-  question: "Maslow’s highest level of need is:",
-  options: ["Safety","Social","Self-actualization","Esteem"],
-  correct: "Self-actualization"
-},
-
-/* 35 */
-{
-  question: "Herzberg classified salary as:",
-  options: ["Motivator","Hygiene factor","Psychological factor","Social factor"],
-  correct: "Hygiene factor"
-},
-
-/* 36 */
-{
-  question: "Employee empowerment means:",
-  options: ["Giving authority and responsibility","Punishment","Salary increase","Promotion only"],
-  correct: "Giving authority and responsibility"
-},
-
-/* 37 */
-{
-  question: "The Paris Climate Agreement was adopted in:",
-  options: ["2013","2015","2018","2020"],
-  correct: "2015"
-},
-
-/* 38 */
-{
-  question: "Ozone layer protects earth from:",
-  options: ["Infrared rays","Visible light","Ultraviolet rays","Gamma rays"],
-  correct: "Ultraviolet rays"
-},
-
-/* 39 */
-{
-  question: "The Constitution of India was adopted on:",
-  options: ["26 January 1950","26 November 1949","15 August 1947","1 January 1950"],
-  correct: "26 November 1949"
-},
-
-/* 40 */
-{
-  question: "India follows:",
-  options: ["Presidential system","Parliamentary system","Monarchy","Military rule"],
-  correct: "Parliamentary system"
-},
-
-/* 41 */
-{
-  question: "The longest mountain range in the world is:",
-  options: ["Andes","Himalayas","Alps","Rockies"],
-  correct: "Andes"
-},
-
-/* 42 */
-{
-  question: "The Tropic of Cancer passes through:",
-  options: ["India","Japan","Germany","Canada"],
-  correct: "India"
-},
-
-/* 43 */
-{
-  question: "Headquarters of the World Trade Organization is in:",
-  options: ["London","Paris","Geneva","Washington"],
-  correct: "Geneva"
-},
-
-/* 44 */
-{
-  question: "The International Monetary Fund mainly deals with:",
-  options: ["Military cooperation","Global financial stability","Tourism promotion","Education policy"],
-  correct: "Global financial stability"
-},
-
-/* 45 */
-{
-  question: "The United Nations was founded in:",
-  options: ["1919","1955","1945","1965"],
-  correct: "1945"
-},
-
-/* 46 */
-{
-  question: "The FIFA World Cup is organized by:",
-  options: ["FIFA","International Olympic Committee","ICC","UEFA"],
-  correct: "FIFA"
-},
-
-/* 47 */
-{
-  question: "Olympic Games are governed by:",
-  options: ["International Olympic Committee","FIFA","ICC","UNESCO"],
-  correct: "International Olympic Committee"
-},
-
-/* 48 */
-{
-  question: "BRICS recently expanded with new members in 2024 including:",
-  options: ["Argentina","Saudi Arabia","Japan","Germany"],
-  correct: "Saudi Arabia"
-},
-
-/* 49 */
-{
-  question: "The headquarters of BRICS New Development Bank is in:",
-  options: ["Shanghai","Beijing","Moscow","Delhi"],
-  correct: "Shanghai"
-},
-
-/* 50 */
-{
-  question: "The G20 summit includes:",
-  options: ["20 UN members","20 richest countries","20 Asian countries","20 largest economies"],
-  correct: "20 largest economies"
-},
-
-/* 51 */
-{
-  question: "Which tool analyzes external business environment factors like political, economic, social, technological?",
-  options: ["SWOT analysis","PESTLE analysis","BCG matrix","Porter chain"],
-  correct: "PESTLE analysis"
-},
-
-/* 52 */
-{
-  question: "Porter’s Five Forces model analyzes:",
-  options: ["Financial performance","Government policy","Employee motivation","Competitive industry structure"],
-  correct: "Competitive industry structure"
-},
-
-/* 53 */
-{
-  question: "Which strategy focuses on entering new markets with existing products?",
-  options: ["Diversification","Market penetration","Market development","Product development"],
-  correct: "Market development"
-},
-
-/* 54 */
-{
-  question: "A company acquiring another company in the same industry is called:",
-  options: ["Horizontal integration","Vertical integration","Diversification","Conglomeration"],
-  correct: "Horizontal integration"
-},
-
-/* 55 */
-{
-  question: "Balanced Scorecard was developed by:",
-  options: [
-    "Robert S. Kaplan and David P. Norton",
-    "Peter Drucker and Michael Porter",
-    "Henry Mintzberg and Gary Hamel",
-    "Frederick Taylor and Henri Fayol"
-  ],
-  correct: "Robert S. Kaplan and David P. Norton"
-},
-
-/* 56 */
-{
-  question: "Transformational leadership focuses on:",
-  options: ["Strict supervision","Inspiring and motivating employees","Financial control","Punishment-based discipline"],
-  correct: "Inspiring and motivating employees"
-},
-
-/* 57 */
-{
-  question: "Emotional intelligence concept was popularized by:",
-  options: ["Daniel Goleman","Peter Drucker","Douglas McGregor","Abraham Maslow"],
-  correct: "Daniel Goleman"
-},
-
-/* 58 */
-{
-  question: "Which conflict management style seeks a win-win solution?",
-  options: ["Avoiding","Competing","Collaborating","Accommodating"],
-  correct: "Collaborating"
-},
-
-/* 59 */
-{
-  question: "Organizational culture refers to:",
-  options: ["Financial policy","Shared values and beliefs in an organization","Government rules","Employee salary structure"],
-  correct: "Shared values and beliefs in an organization"
-},
-
-/* 60 */
-{
-  question: "Job enrichment aims to:",
-  options: ["Reduce workload","Remove authority","Reduce salary cost","Increase job responsibility and satisfaction"],
-  correct: "Increase job responsibility and satisfaction"
-},
-
-/* 61 */
-{
-  question: "Risk management primarily involves:",
-  options: ["Eliminating all risks","Identifying and managing risks","Increasing risk exposure","Ignoring uncertainties"],
-  correct: "Identifying and managing risks"
-},
-
-/* 62 */
-{
-  question: "Diversification helps reduce:",
-  options: ["Operational risk","Financial risk","Investment risk","Marketing risk"],
-  correct: "Investment risk"
-},
-
-/* 63 */
-{
-  question: "Internal audit mainly evaluates:",
-  options: ["Internal controls and compliance","Marketing strategy","Sales performance","Production capacity"],
-  correct: "Internal controls and compliance"
-},
-
-/* 64 */
-{
-  question: "Enterprise Risk Management (ERM) integrates:",
-  options: ["Financial risk only","All organizational risks","Marketing risks only","Production risks only"],
-  correct: "All organizational risks"
-},
-
-/* 65 */
-{
-  question: "Digital transformation mainly involves:",
-  options: [
-    "Increasing manual work",
-    "Using technology to improve business processes",
-    "Reducing employee skills",
-    "Eliminating management"
-  ],
-  correct: "Using technology to improve business processes"
-},
-
-/* 66 */
-{
-  question: "ERP systems integrate:",
-  options: ["Finance, HR, and operations","Only marketing","Only accounting","Only production"],
-  correct: "Finance, HR, and operations"
-},
-
-/* 67 */
-{
-  question: "Artificial Intelligence (AI) helps businesses in:",
-  options: ["Data analysis and automation","Manual accounting","Reducing productivity","Eliminating planning"],
-  correct: "Data analysis and automation"
-},
-
-/* 68 */
-{
-  question: "Cloud computing provides:",
-  options: ["Physical storage only","Internet-based computing services","Banking services","Government control"],
-  correct: "Internet-based computing services"
-},
-
-/* 69 */
-{
-  question: "ESG reporting focuses on:",
-  options: [
-    "Profit only",
-    "Sales growth",
-    "Environmental, social, and governance performance",
-    "Employee salary"
-  ],
-  correct: "Environmental, social, and governance performance"
-},
-
-/* 70 */
-{
-  question: "Corporate sustainability means:",
-  options: [
-    "Short-term profit",
-    "Government control",
-    "High taxation",
-    "Long-term responsible business practices"
-  ],
-  correct: "Long-term responsible business practices"
-},
-
-/* 71 */
-{
-  question: "Carbon footprint refers to:",
-  options: [
-    "Energy production",
-    "Total greenhouse gas emissions caused by activities",
-    "Water consumption",
-    "Forest cover"
-  ],
-  correct: "Total greenhouse gas emissions caused by activities"
-},
-
-/* 72 */
-{
-  question: "Comparative advantage theory was proposed by:",
-  options: ["David Ricardo","Adam Smith","John Maynard Keynes","Milton Friedman"],
-  correct: "David Ricardo"
-},
-
-/* 73 */
-{
-  question: "Free trade encourages:",
-  options: [
-    "Import restrictions",
-    "Trade without tariffs or barriers",
-    "Government monopoly",
-    "Economic isolation"
-  ],
-  correct: "Trade without tariffs or barriers"
-},
-
-/* 74 */
-{
-  question: "The main objective of the World Trade Organization is:",
-  options: [
-    "Military cooperation",
-    "Global trade regulation",
-    "Cultural exchange",
-    "Education policy"
-  ],
-  correct: "Global trade regulation"
-},
-
-/* 75 */
-{
-  question: "Exchange rate refers to:",
-  options: [
-    "Interest rate",
-    "Value of one currency compared to another",
-    "Inflation rate",
-    "Tax rate"
-  ],
-  correct: "Value of one currency compared to another"
-},
-
-/* 76 */
-{
-  question: "The headquarters of the International Monetary Fund is in:",
-  options: ["London","Paris","Geneva","Washington, D.C."],
-  correct: "Washington, D.C."
-},
-
-/* 77 */
-{
-  question: "The United Nations Security Council has how many permanent members?",
-  options: ["3","5","7","10"],
-  correct: "5"
-},
-
-/* 78 */
-{
-  question: "Permanent members of the Security Council include:",
-  options: ["India","Japan","France","Germany"],
-  correct: "France"
-},
-
-/* 79 */
-{
-  question: "The European Union is mainly an:",
-  options: [
-    "Military alliance",
-    "Economic and political union",
-    "Cultural organization",
-    "Sports federation"
-  ],
-  correct: "Economic and political union"
-},
-
-/* 80 */
-{
-  question: "Transparency in governance helps to:",
-  options: [
-    "Increase corruption",
-    "Improve accountability",
-    "Reduce development",
-    "Increase secrecy"
-  ],
-  correct: "Improve accountability"
-},
-
-/* 81 */
-{
-  question: "Public–Private Partnership (PPP) means:",
-  options: [
-    "Government monopoly",
-    "Military cooperation",
-    "Foreign investment only",
-    "Cooperation between government and private sector"
-  ],
-  correct: "Cooperation between government and private sector"
-},
-
-/* 82 */
-{
-  question: "Regulatory bodies mainly ensure:",
-  options: [
-    "Market fairness and compliance",
-    "Government profit",
-    "Employee recruitment",
-    "Production growth"
-  ],
-  correct: "Market fairness and compliance"
-},
-
-/* 83 */
-{
-  question: "Non-Performing Asset (NPA) refers to:",
-  options: [
-    "Profit-making loan",
-    "Loan not repaid for a long period",
-    "Government investment",
-    "Stock market asset"
-  ],
-  correct: "Loan not repaid for a long period"
-},
-
-/* 84 */
-{
-  question: "Capital adequacy ratio measures:",
-  options: [
-    "Bank profitability",
-    "Government debt",
-    "Bank financial strength",
-    "Export growth"
-  ],
-  correct: "Bank financial strength"
-},
-
-/* 85 */
-{
-  question: "The Basel III framework regulates:",
-  options: [
-    "Global banking standards",
-    "Environmental policy",
-    "International trade",
-    "Tourism"
-  ],
-  correct: "Global banking standards"
-},
-
-/* 86 */
-{
-  question: "Human Development Index (HDI) measures:",
-  options: [
-    "Military power",
-    "Health, education, and income",
-    "Industrial growth",
-    "Export level"
-  ],
-  correct: "Health, education, and income"
-},
-
-/* 87 */
-{
-  question: "Sustainable Development Goals (SDGs) were adopted by the:",
-  options: [
-    "United Nations",
-    "World Bank",
-    "International Monetary Fund",
-    "WTO"
-  ],
-  correct: "United Nations"
-},
-
-/* 88 */
-{
-  question: "The Olympic Games are organized by the:",
-  options: [
-    "International Olympic Committee",
-    "FIFA",
-    "ICC",
-    "UEFA"
-  ],
-  correct: "International Olympic Committee"
-},
-
-/* 89 */
-{
-  question: "Cricket World Cup is organized by:",
-  options: [
-    "International Cricket Council",
-    "FIFA",
-    "BCCI",
-    "ICC Academy"
-  ],
-  correct: "International Cricket Council"
-},
-
-/* 90 */
-{
-  question: "The Amazon rainforest is located mainly in:",
-  options: ["Asia","Africa","South America","Australia"],
-  correct: "South America"
-},
-
-/* 91 */
-{
-  question: "If MONDAY is coded as NPOEBZ, TUESDAY is coded as:",
-  options: ["UVFTEBZ","UVFTDAY","TVFTDAY","VFTDAY"],
-  correct: "UVFTEBZ"
-},
-
-/* 92 */
-{
-  question: "Triangle has:",
-  options: ["3 sides","4 sides","5 sides","6 sides"],
-  correct: "3 sides"
-},
-
-/* 93 */
-{
-  question: "Next pattern: 2, 6, 12, 20, ?",
-  options: ["30","25","28","32"],
-  correct: "30"
-},
-
-/* 94 */
-{
-  question: "In clock reasoning, 12 hours equals:",
-  options: ["360 degree","180 degree","270 degree","90 degree"],
-  correct: "360 degree"
-},
-
-/* 95 */
-{
-  question: "If A = 1, B = 2, then Z =",
-  options: ["26","24","25","27"],
-  correct: "26"
-},
-
-/* 96 */
-{
-  question: "Next number: 7, 14, 21, ?",
-  options: ["28","25","30","24"],
-  correct: "28"
-},
-
-/* 97 */
-{
-  question: "Odd one out:",
-  options: ["Red","Blue","Green","Table"],
-  correct: "Table"
-},
-
-/* 98 */
-{
-  question: "Next letter: B, D, F, H, ?",
-  options: ["J","K","I","L"],
-  correct: "J"
-},
-
-/* 99 */
-{
-  question: "Which is an even number?",
-  options: ["7","8","9","11"],
-  correct: "8"
-},
-
-/* 100 */
-{
-  question: "All men are mortal. Ram is a man. Therefore:",
-  options: ["Ram is mortal","Ram is immortal","Ram is animal","None"],
-  correct: "Ram is mortal"
-}
-
-];
 
   const login = document.getElementById("login");
   const exam = document.getElementById("exam");
@@ -901,8 +406,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let hideTimer = null;
   let timeLeft = QUESTION_TIME;
   let examFinished = false;
+startBtn.addEventListener("click", () => {
 
-  startBtn.addEventListener("click", () => {
     if (!nameInput.value.trim() || !emailInput.value.trim()) {
       alert("Enter name and email");
       return;
@@ -910,8 +415,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     login.classList.add("hidden");
     exam.classList.remove("hidden");
-    document.documentElement.requestFullscreen?.();
-    loadQuestion();
+	if (document.documentElement.requestFullscreen) {
+	  document.documentElement.requestFullscreen();
+}    loadQuestion();
   });
 
   function loadQuestion() {
@@ -1044,7 +550,3 @@ Correct Answer: ${q.correct}
 
 </body>
 </html>
-
-
-
-
