@@ -43,15 +43,21 @@
 }
 
 .scrolling-question {
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: normal;
+  display: block;
+  position: relative;
+  animation: questionScroll 30s linear 1;
+}
 
-  white-space: normal;
-
-  overflow-wrap: break-word;
-
-  word-break: normal;
-
-  animation: none;
-
+@keyframes questionScroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 </style>
@@ -86,9 +92,9 @@
 
   <input id="studentName" class="w-full border p-2 mb-3 rounded" placeholder="Enter Full Name">
 
-  <input id="studentEmail" type="email" class="w-full border p-2 mb-2 rounded" placeholder="Enter Email Address">
+  <input id="studentEmail" type="email" class="w-full border p-2 mb-2 rounded" placeholder="Enter Email Address" required>
   <p class="text-xs text-red-600 mb-4">
-    ⚠️ Each email address can be used for this exam only once on this browser/device.
+    Only one exam response is allowed per email ID.
   </p>
 
 
@@ -167,40 +173,48 @@
 
 <script>
 
-
 document.addEventListener("DOMContentLoaded", () => {
 
   // ============================================================
-  // ONE-ATTEMPT PROTECTION
-  // The email address is used as the candidate's attempt key.
-  // The attempt is locked immediately when Start Quiz is clicked.
+  // CENTRAL ONE-RESPONSE-PER-EMAIL CHECK
   // ============================================================
-  const ATTEMPT_KEY_PREFIX = "THECOS_FRONT_DESK_EXAM_ATTEMPT_";
+  // Deploy the supplied Google Apps Script as a Web App and put
+  // its URL below. This is required for one-response-per-email
+  // across different browsers/devices.
+  const EXAM_LOCK_URL = "https://script.google.com/macros/s/AKfycbxmoeHcm_3GcKhQwsddroT8rEVa70emwzqBcZFU-sGecMYH4CckBfuOBBDQ6Sk0vO9fMA/exec";
 
-  function normalizeEmail(email) {
-    return email.trim().toLowerCase();
-  }
+  async function checkAndLockEmail(email, name) {
+    if (!EXAM_LOCK_URL || EXAM_LOCK_URL.includes("PASTE_YOUR_")) {
+      alert("Exam server is not configured. Please contact the administrator.");
+      return false;
+    }
 
-  function attemptKey(email) {
-    return ATTEMPT_KEY_PREFIX + encodeURIComponent(normalizeEmail(email));
-  }
+    try {
+      const response = await fetch(EXAM_LOCK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify({
+          action: "start",
+          email: email,
+          name: name
+        })
+      });
 
-  function hasUsedAttempt(email) {
-    return !!localStorage.getItem(attemptKey(email));
-  }
+      const data = await response.json();
 
-  function lockAttempt(email) {
-    localStorage.setItem(attemptKey(email), JSON.stringify({
-      status: "started",
-      startedAt: new Date().toISOString()
-    }));
-  }
+      if (!data.allowed) {
+        alert("This email address has already submitted or started this exam. Only one response is allowed per email ID.");
+        return false;
+      }
 
-  function markCompleted(email) {
-    localStorage.setItem(attemptKey(email), JSON.stringify({
-      status: "completed",
-      completedAt: new Date().toISOString()
-    }));
+      return true;
+    } catch (error) {
+      console.error("Exam server error:", error);
+      alert("Unable to verify your email. Please check your internet connection and try again.");
+      return false;
+    }
   }
 
 
@@ -1456,32 +1470,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let examFinished = false;
 
-startBtn.addEventListener("click", () => {
+startBtn.addEventListener("click", async () => {
 
     const candidateName = nameInput.value.trim();
-    const candidateEmail = normalizeEmail(emailInput.value);
+    const candidateEmail = emailInput.value.trim().toLowerCase();
 
     if (!candidateName || !candidateEmail) {
       alert("Enter name and email");
       return;
     }
 
-    // Stop the same email from starting the exam again.
-    if (hasUsedAttempt(candidateEmail)) {
-      alert(
-        "This email address has already used the exam. " +
-        "Each candidate is allowed to write the exam only once."
-      );
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(candidateEmail)) {
+      alert("Please enter a valid email address.");
       return;
     }
 
-    // Lock the attempt BEFORE the first question is shown.
-    // Refreshing, reopening, or tab-switch termination cannot restart it.
-    lockAttempt(candidateEmail);
-
-    nameInput.disabled = true;
-    emailInput.disabled = true;
     startBtn.disabled = true;
+    startBtn.textContent = "Checking...";
+
+    const allowed = await checkAndLockEmail(candidateEmail, candidateName);
+
+    if (!allowed) {
+      startBtn.disabled = false;
+      startBtn.textContent = "Start Quiz";
+      return;
+    }
 
     login.classList.add("hidden");
     exam.classList.remove("hidden");
@@ -1581,21 +1594,11 @@ startBtn.addEventListener("click", () => {
 
   nextBtn.addEventListener("click", nextQuestion);
 
-
-
-  //function sendResultsEmail() {
-
-    //let result = "";
-
-    //QUIZ_QUESTIONS.forEach((q, i) => {
-
-      //result += `Q${i+1}: ${q.question}\nAnswer: ${answers[i]}\n\n`;
-
-    //});
+);
 
 
 
-    //emailjs.send("service_8yr4zf5",   
+    //emailjs.send("service_8yr4zf5",  &#x20;
 
     //"template_kyqnyrd",  {
 
@@ -1740,12 +1743,14 @@ Correct Answer: ${q.correct}
 
 
     if (emailSent) {
-      markCompleted(emailInput.value);
 
-      exam.classList.add("hidden");
-      thankyou.classList.remove("hidden");
-      setTimeout(() => location.reload(), 5000);
-    } else {
+      exam.classList.add("hidden");
+
+      thankyou.classList.remove("hidden");
+
+      setTimeout(() => location.reload(), 5000);
+
+    } else {
 
       examFinished = false;
 
@@ -1777,7 +1782,7 @@ Correct Answer: ${q.correct}
 
     if (document.hidden && !examFinished) {
 
-      alert("Tab switching detected. Exam terminated. Your exam attempt has been used and cannot be restarted.");
+      alert("Tab switching detected. Exam terminated.");
 
       location.reload();
 
