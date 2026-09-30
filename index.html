@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Secure Online Quiz - Front Desk Training Questions</title>
+<title>Secure Online Quiz - 50 Front Desk Training Questions</title>
 
 <link rel="icon" type="image/png" href="image.png">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -21,8 +21,10 @@
   100% { transform: translateX(-100%); }
 }
 .scrolling-question {
-  white-space: nowrap;
-  animation: scrollRightToLeft 10s linear 2 forwards;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: normal;
+  animation: none;
 }
 </style>
 </head>
@@ -87,602 +89,602 @@ document.addEventListener("DOMContentLoaded", () => {
      const QUIZ_QUESTIONS = [
     /* 1 */
     {
-      question: "Member Admission After entering all required member details, what is the correct final step before confirming successful creation? A. Click Print and proceed to FD\nB. Click Save and wait for the confirmation pop-up\nC. Click Admission again\nD. Generate an FD Number",
+      question: "Member Admission After entering all required member details, what is the correct final step before confirming successful creation?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Click Print and proceed to FD",
+        "Click Save and wait for the confirmation pop-up",
+        "Click Admission again",
+        "Generate an FD Number"
       ],
-      correct: ""
+      correct: "Click Save and wait for the confirmation pop-up"
     },
 
     /* 2 */
     {
-      question: "Which combination contains only details specifically listed for Member Admission? A. Name, DOB, Mobile No., Aadhaar No.\nB. Salary, PF No., Designation, DOB\nC. FD Number, ROI, Nominee, Salary\nD. Loan Number, Address, ROI, PAN",
+      question: "Which combination contains only details specifically listed for Member Admission?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Name, DOB, Mobile No., Aadhaar No.",
+        "Salary, PF No., Designation, DOB",
+        "FD Number, ROI, Nominee, Salary",
+        "Loan Number, Address, ROI, PAN"
       ],
-      correct: ""
+      correct: "Name, DOB, Mobile No., Aadhaar No."
     },
 
     /* 3 */
     {
-      question: "A staff member has entered the member details but has not received the confirmation message after clicking Save. Based on the PPT, what should the staff member do? A. Immediately create another member\nB. Wait for the confirmation pop-up\nC. Proceed directly to FD Renewal\nD. Print the member number",
+      question: "A staff member has entered the member details but has not received the confirmation message after clicking Save. Based on the PPT, what should the staff member do?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Immediately create another member",
+        "Wait for the confirmation pop-up",
+        "Proceed directly to FD Renewal",
+        "Print the member number"
       ],
-      correct: ""
+      correct: "Wait for the confirmation pop-up"
     },
 
     /* 4 */
     {
-      question: "For a Fresh FD, which sequence is most appropriate? A. Select scheme → enter payment → enter member → close deposit\nB. Enter member → fill mobile/nominee/account details → select scheme/amount → select payment details → save\nC. Enter FD number → renew → select scheme\nD. Enter UTR → select FD number → print bond",
+      question: "For a Fresh FD, which sequence is most appropriate?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Select scheme → enter payment → enter member → close deposit",
+        "Enter member → fill mobile/nominee/account details → select scheme/amount → select payment details → save",
+        "Enter FD number → renew → select scheme",
+        "Enter UTR → select FD number → print bond"
       ],
-      correct: ""
+      correct: "Enter member → fill mobile/nominee/account details → select scheme/amount → select payment details → save"
     },
 
     /* 5 */
     {
-      question: "Which statement about Fresh FD creation is correct? A. FD Number must always be manually entered\nB. Date and next FD Number are generated automatically\nC. ROI must always be manually calculated\nD. Maturity Amount must always be manually calculated",
+      question: "Which statement about Fresh FD creation is correct?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "FD Number must always be manually entered",
+        "Date and next FD Number are generated automatically",
+        "ROI must always be manually calculated",
+        "Maturity Amount must always be manually calculated"
       ],
-      correct: ""
+      correct: "Date and next FD Number are generated automatically"
     },
 
     /* 6 */
     {
-      question: "A member pays ₹1,00,000 as ₹50,000 cash and ₹50,000 by SBI cheque. What should the staff do? A. Select only Cash and ignore the cheque\nB. Select only Cheque and enter ₹1,00,000\nC. Select both payment modes, enter cheque number and cash denominations\nD. Create two separate FDs automatically",
+      question: "A member pays ₹1,00,000 as ₹50,000 cash and ₹50,000 by SBI cheque. What should the staff do?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Select only Cash and ignore the cheque",
+        "Select only Cheque and enter ₹1,00,000",
+        "Select both payment modes, enter cheque number and cash denominations",
+        "Create two separate FDs automatically"
       ],
-      correct: ""
+      correct: "Select both payment modes, enter cheque number and cash denominations"
     },
 
     /* 7 */
     {
-      question: "After selecting the required FD options, which three items are reflected automatically? A. Member Number, Aadhaar and PAN\nB. Period, ROI and Maturity Amount\nC. Nominee, Address and Mobile Number\nD. FD Number, Cheque Number and UTR",
+      question: "After selecting the required FD options, which three items are reflected automatically?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Member Number, Aadhaar and PAN",
+        "Period, ROI and Maturity Amount",
+        "Nominee, Address and Mobile Number",
+        "FD Number, Cheque Number and UTR"
       ],
-      correct: ""
+      correct: "Period, ROI and Maturity Amount"
     },
 
     /* 8 */
     {
-      question: "Which action completes the Fresh FD saving process? A. Click Renew Deposit\nB. Click Close Deposit\nC. Click Save New Deposit and wait for confirmation\nD. Click Print Certificate",
+      question: "Which action completes the Fresh FD saving process?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Click Renew Deposit",
+        "Click Close Deposit",
+        "Click Save New Deposit and wait for confirmation",
+        "Click Print Certificate"
       ],
-      correct: ""
+      correct: "Click Save New Deposit and wait for confirmation"
     },
 
     /* 9 */
     {
-      question: "During FD Renewal, the first purpose of entering the Member ID is to: A. Generate a new member\nB. Check whether any FD bonds have matured or are due for renewal\nC. Generate a loan number\nD. Print an RD receipt",
+      question: "During FD Renewal, the first purpose of entering the Member ID is to:",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Generate a new member",
+        "Check whether any FD bonds have matured or are due for renewal",
+        "Generate a loan number",
+        "Print an RD receipt"
       ],
-      correct: ""
+      correct: "Check whether any FD bonds have matured or are due for renewal"
     },
 
     /* 10 */
     {
-      question: "Before renewing an FD, which existing document/detail should be specifically verified? A. Attendance register\nB. Previous FD bond\nC. Employee ID card\nD. Voucher book",
+      question: "Before renewing an FD, which existing document/detail should be specifically verified?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Attendance register",
+        "Previous FD bond",
+        "Employee ID card",
+        "Voucher book"
       ],
-      correct: ""
+      correct: "Previous FD bond"
     },
 
     /* 11 */
     {
-      question: "A member wants to renew an FD but is unsure whether to retain the same amount. What should the staff confirm? A. Only the member's mobile number\nB. Whether the same amount should be renewed and whether there are changes in scheme or other details\nC. Only the bank name\nD. Only the nominee's name",
+      question: "A member wants to renew an FD but is unsure whether to retain the same amount. What should the staff confirm?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Only the member's mobile number",
+        "Whether the same amount should be renewed and whether there are changes in scheme or other details",
+        "Only the bank name",
+        "Only the nominee's name"
       ],
-      correct: ""
+      correct: "Whether the same amount should be renewed and whether there are changes in scheme or other details"
     },
 
     /* 12 */
     {
-      question: "Which combination represents the FD renewal choices mentioned in the PPT? A. Cash / Cheque\nB. Monthly / Cumulative\nC. Fresh / Closed\nD. Principal / Loan",
+      question: "Which combination represents the FD renewal choices mentioned in the PPT?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Cash / Cheque",
+        "Monthly / Cumulative",
+        "Fresh / Closed",
+        "Principal / Loan"
       ],
-      correct: ""
+      correct: "Monthly / Cumulative"
     },
 
     /* 13 */
     {
-      question: "A Monthly Interest FD is being renewed. The system calculates the current month's interest by default. What should be done? A. Renew principal plus current month's interest\nB. Renew only the principal and pay the current month's interest separately\nC. Cancel the FD\nD. Convert it into a Cumulative FD",
+      question: "A Monthly Interest FD is being renewed. The system calculates the current month's interest by default. What should be done?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Renew principal plus current month's interest",
+        "Renew only the principal and pay the current month's interest separately",
+        "Cancel the FD",
+        "Convert it into a Cumulative FD"
       ],
-      correct: ""
+      correct: "Renew only the principal and pay the current month's interest separately"
     },
 
     /* 14 */
     {
-      question: "For a Cumulative FD, the renewal is processed with: A. The same amount\nB. Only the monthly interest\nC. The cash portion only\nD. The cheque portion only",
+      question: "For a Cumulative FD, the renewal is processed with:",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "The same amount",
+        "Only the monthly interest",
+        "The cash portion only",
+        "The cheque portion only"
       ],
-      correct: ""
+      correct: "The same amount"
     },
 
     /* 15 */
     {
-      question: "Which information is specifically required during FD closure verification? A. Amount and bank details\nB. Employee salary and designation\nC. RD duration and ROI\nD. Voucher number and UTR",
+      question: "Which information is specifically required during FD closure verification?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Amount and bank details",
+        "Employee salary and designation",
+        "RD duration and ROI",
+        "Voucher number and UTR"
       ],
-      correct: ""
+      correct: "Amount and bank details"
     },
 
     /* 16 */
     {
-      question: "Which is the correct process for FD closure? A. Enter Member ID → Renew → Print\nB. Click Close Deposit → type FD Number → verify amount and bank details → Close Deposit\nC. Select RD Number → Save → Close\nD. Enter UTR → Print → Close",
+      question: "Which is the correct process for FD closure?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Enter Member ID → Renew → Print",
+        "Click Close Deposit → type FD Number → verify amount and bank details → Close Deposit",
+        "Select RD Number → Save → Close",
+        "Enter UTR → Print → Close"
       ],
-      correct: ""
+      correct: "Click Close Deposit → type FD Number → verify amount and bank details → Close Deposit"
     },
 
     /* 17 */
     {
-      question: "During RD creation, the ROI depends on: A. Member's age\nB. Selected duration\nC. Payment mode\nD. Nominee's age",
+      question: "During RD creation, the ROI depends on:",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Member's age",
+        "Selected duration",
+        "Payment mode",
+        "Nominee's age"
       ],
-      correct: ""
+      correct: "Selected duration"
     },
 
     /* 18 */
     {
-      question: "If an RD duration is changed, which item may change according to the PPT? A. ROI\nB. Member Number\nC. Aadhaar Number\nD. Receipt Number",
+      question: "If an RD duration is changed, which item may change according to the PPT?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "ROI",
+        "Member Number",
+        "Aadhaar Number",
+        "Receipt Number"
       ],
-      correct: ""
+      correct: "ROI"
     },
 
     /* 19 */
     {
-      question: "Which sequence is appropriate for creating an RD? A. Enter member details → verify member information → enter amount/duration → system generates ROI → Create RD\nB. Enter UTR → select ROI → close RD\nC. Enter cheque number → print → create member\nD. Enter FD Number → renew → create RD",
+      question: "Which sequence is appropriate for creating an RD?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Enter member details → verify member information → enter amount/duration → system generates ROI → Create RD",
+        "Enter UTR → select ROI → close RD",
+        "Enter cheque number → print → create member",
+        "Enter FD Number → renew → create RD"
       ],
-      correct: ""
+      correct: "Enter member details → verify member information → enter amount/duration → system generates ROI → Create RD"
     },
 
     /* 20 */
     {
-      question: "While creating an RD, which combination must be verified? A. Name, DOB, Nominee Details and Address\nB. Salary, PF and HRA\nC. FD Number, ROI and bank balance\nD. Loan Number, UTR and voucher number",
+      question: "While creating an RD, which combination must be verified?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Name, DOB, Nominee Details and Address",
+        "Salary, PF and HRA",
+        "FD Number, ROI and bank balance",
+        "Loan Number, UTR and voucher number"
       ],
-      correct: ""
+      correct: "Name, DOB, Nominee Details and Address"
     },
 
     /* 21 */
     {
-      question: "For an RD receipt by cheque, after entering the Member ID, what happens? A. All member details are displayed automatically\nB. A new Member Number is generated\nC. ROI must be calculated manually\nD. The RD is automatically closed",
+      question: "For an RD receipt by cheque, after entering the Member ID, what happens?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "All member details are displayed automatically",
+        "A new Member Number is generated",
+        "ROI must be calculated manually",
+        "The RD is automatically closed"
       ],
-      correct: ""
+      correct: "All member details are displayed automatically"
     },
 
     /* 22 */
     {
-      question: "What additional information is required for an RD cash receipt? A. Cash denominations\nB. Cheque Number\nC. FD Scheme\nD. Loan Number",
+      question: "What additional information is required for an RD cash receipt?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Cash denominations",
+        "Cheque Number",
+        "FD Scheme",
+        "Loan Number"
       ],
-      correct: ""
+      correct: "Cash denominations"
     },
 
     /* 23 */
     {
-      question: "In FD Loan creation, which detail connects the loan to the FD? A. RD Number\nB. FD Number\nC. Voucher Number\nD. UTR Number",
+      question: "In FD Loan creation, which detail connects the loan to the FD?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "RD Number",
+        "FD Number",
+        "Voucher Number",
+        "UTR Number"
       ],
-      correct: ""
+      correct: "FD Number"
     },
 
     /* 24 */
     {
-      question: "Which action is required after entering the FD Loan details? A. Click Sanction\nB. Click Renew\nC. Click Close Deposit\nD. Click Print Voucher",
+      question: "Which action is required after entering the FD Loan details?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Click Sanction",
+        "Click Renew",
+        "Click Close Deposit",
+        "Click Print Voucher"
       ],
-      correct: ""
+      correct: "Click Sanction"
     },
 
     /* 25 */
     {
-      question: "Which set contains the details specifically listed for an FD Loan? A. Member Number, DOB, FD Number, Nominee Details, Address and Payment Mode\nB. RD Number, ROI, Share Amount and UTR\nC. Salary, PF, HRA and PAN\nD. Voucher Number, Receipt Number and Cheque Number",
+      question: "Which set contains the details specifically listed for an FD Loan?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Member Number, DOB, FD Number, Nominee Details, Address and Payment Mode",
+        "RD Number, ROI, Share Amount and UTR",
+        "Salary, PF, HRA and PAN",
+        "Voucher Number, Receipt Number and Cheque Number"
       ],
-      correct: ""
+      correct: "Member Number, DOB, FD Number, Nominee Details, Address and Payment Mode"
     },
 
     /* 26 */
     {
-      question: "Which detail is required for creating an FD Loan Receipt in addition to the Member Number? A. Loan Number\nB. RD Number\nC. Share Number\nD. Voucher Number",
+      question: "Which detail is required for creating an FD Loan Receipt in addition to the Member Number?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Loan Number",
+        "RD Number",
+        "Share Number",
+        "Voucher Number"
       ],
-      correct: ""
+      correct: "Loan Number"
     },
 
     /* 27 */
     {
-      question: "For Gold Loan creation, which two values are displayed automatically? A. Loan Number and ROI\nB. Member Number and DOB\nC. FD Number and maturity date\nD. UTR Number and receipt number",
+      question: "For Gold Loan creation, which two values are displayed automatically?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Loan Number and ROI",
+        "Member Number and DOB",
+        "FD Number and maturity date",
+        "UTR Number and receipt number"
       ],
-      correct: ""
+      correct: "Loan Number and ROI"
     },
 
     /* 28 */
     {
-      question: "Which combination is required for Gold Loan creation? A. Name, Member Number, Mobile Number, Account Details, Address, Amount, Months and Payment\nB. Only Member Number and FD Number\nC. Only Name and Amount\nD. Receipt Number and Voucher Number",
+      question: "Which combination is required for Gold Loan creation?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Name, Member Number, Mobile Number, Account Details, Address, Amount, Months and Payment",
+        "Only Member Number and FD Number",
+        "Only Name and Amount",
+        "Receipt Number and Voucher Number"
       ],
-      correct: ""
+      correct: "Name, Member Number, Mobile Number, Account Details, Address, Amount, Months and Payment"
     },
 
     /* 29 */
     {
-      question: "A Gold Loan cash receipt is being prepared. Which information should be entered after selecting the GL Number? A. Cash denominations\nB. Cheque Number\nC. FD Scheme\nD. RD Duration",
+      question: "A Gold Loan cash receipt is being prepared. Which information should be entered after selecting the GL Number?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Cash denominations",
+        "Cheque Number",
+        "FD Scheme",
+        "RD Duration"
       ],
-      correct: ""
+      correct: "Cash denominations"
     },
 
     /* 30 */
     {
-      question: "A Gold Loan cheque receipt is being prepared. Which information should be entered? A. Cash denominations\nB. Cheque Number\nC. FD Number\nD. Share Amount",
+      question: "A Gold Loan cheque receipt is being prepared. Which information should be entered?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Cash denominations",
+        "Cheque Number",
+        "FD Number",
+        "Share Amount"
       ],
-      correct: ""
+      correct: "Cheque Number"
     },
 
     /* 31 */
     {
-      question: "In HML creation, which values are automatically displayed? A. HML Number and ROI\nB. Member Number and Aadhaar\nC. FD Number and maturity amount\nD. Voucher Number and UTR",
+      question: "In HML creation, which values are automatically displayed?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "HML Number and ROI",
+        "Member Number and Aadhaar",
+        "FD Number and maturity amount",
+        "Voucher Number and UTR"
       ],
-      correct: ""
+      correct: "HML Number and ROI"
     },
 
     /* 32 */
     {
-      question: "Which action completes HML creation according to the PPT? A. Click Create HML and wait for confirmation\nB. Click Renew Deposit\nC. Click Close Deposit\nD. Click Print Voucher",
+      question: "Which action completes HML creation according to the PPT?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Click Create HML and wait for confirmation",
+        "Click Renew Deposit",
+        "Click Close Deposit",
+        "Click Print Voucher"
       ],
-      correct: ""
+      correct: "Click Create HML and wait for confirmation"
     },
 
     /* 33 */
     {
-      question: "Which loan requires selecting both Colour and Model? A. FD Loan\nB. Gold Loan\nC. HML Loan\nD. ML Loan",
+      question: "Which loan requires selecting both Colour and Model?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "FD Loan",
+        "Gold Loan",
+        "HML Loan",
+        "ML Loan"
       ],
-      correct: ""
+      correct: "ML Loan"
     },
 
     /* 34 */
     {
-      question: "Which action is used to create an ML after entering the required details? A. Sanction\nB. Renew\nC. Close\nD. Print",
+      question: "Which action is used to create an ML after entering the required details?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Sanction",
+        "Renew",
+        "Close",
+        "Print"
       ],
-      correct: ""
+      correct: "Sanction"
     },
 
     /* 35 */
     {
-      question: "In an ML cheque receipt, which information is entered after selecting the ML Number? A. Cheque Number, if applicable\nB. Cash denominations only\nC. FD Scheme\nD. UTR Number",
+      question: "In an ML cheque receipt, which information is entered after selecting the ML Number?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Cheque Number, if applicable",
+        "Cash denominations only",
+        "FD Scheme",
+        "UTR Number"
       ],
-      correct: ""
+      correct: "Cheque Number, if applicable"
     },
 
     /* 36 */
     {
-      question: "Which statement about MSME Loan creation is correct? A. MCL Number and ROI are displayed automatically by default\nB. FD Number must be entered\nC. RD Number is automatically generated\nD. Colour and Model must be selected",
+      question: "Which statement about MSME Loan creation is correct?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "MCL Number and ROI are displayed automatically by default",
+        "FD Number must be entered",
+        "RD Number is automatically generated",
+        "Colour and Model must be selected"
       ],
-      correct: ""
+      correct: "MCL Number and ROI are displayed automatically by default"
     },
 
     /* 37 */
     {
-      question: "For an MSME cash receipt, what should be entered after selecting the MSME Number? A. Cash denomination details\nB. Cheque Number\nC. FD Number\nD. Nominee Aadhaar only",
+      question: "For an MSME cash receipt, what should be entered after selecting the MSME Number?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Cash denomination details",
+        "Cheque Number",
+        "FD Number",
+        "Nominee Aadhaar only"
       ],
-      correct: ""
+      correct: "Cash denomination details"
     },
 
     /* 38 */
     {
-      question: "For an MSME cheque receipt, which additional information is required? A. Cheque Number\nB. Cash denominations\nC. FD Scheme\nD. RD Duration",
+      question: "For an MSME cheque receipt, which additional information is required?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Cheque Number",
+        "Cash denominations",
+        "FD Scheme",
+        "RD Duration"
       ],
-      correct: ""
+      correct: "Cheque Number"
     },
 
     /* 39 */
     {
-      question: "Which combination is specifically required for New Share creation? A. Aadhaar, PAN, Share Amount and Payment\nB. FD Number, ROI and Maturity Amount\nC. Loan Number, UTR and Cheque Number\nD. RD Number and Duration only",
+      question: "Which combination is specifically required for New Share creation?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Aadhaar, PAN, Share Amount and Payment",
+        "FD Number, ROI and Maturity Amount",
+        "Loan Number, UTR and Cheque Number",
+        "RD Number and Duration only"
       ],
-      correct: ""
+      correct: "Aadhaar, PAN, Share Amount and Payment"
     },
 
     /* 40 */
     {
-      question: "After entering New Share details, which option should be selected? A. Save New Share\nB. Create GL\nC. Renew Deposit\nD. Close Deposit",
+      question: "After entering New Share details, which option should be selected?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Save New Share",
+        "Create GL",
+        "Renew Deposit",
+        "Close Deposit"
       ],
-      correct: ""
+      correct: "Save New Share"
     },
 
     /* 41 */
     {
-      question: "To print a receipt, what is the first key information mentioned in the PPT? A. Receipt Number\nB. UTR Number\nC. FD Number\nD. Member Salary",
+      question: "To print a receipt, what is the first key information mentioned in the PPT?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Receipt Number",
+        "UTR Number",
+        "FD Number",
+        "Member Salary"
       ],
-      correct: ""
+      correct: "Receipt Number"
     },
 
     /* 42 */
     {
-      question: "What should be done before printing a receipt? A. Verify the details\nB. Renew the FD\nC. Create a new member\nD. Close the account",
+      question: "What should be done before printing a receipt?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Verify the details",
+        "Renew the FD",
+        "Create a new member",
+        "Close the account"
       ],
-      correct: ""
+      correct: "Verify the details"
     },
 
     /* 43 */
     {
-      question: "In the Voucher section, what is selected before printing? A. Voucher Number\nB. FD Number\nC. Member ID only\nD. UTR Number",
+      question: "In the Voucher section, what is selected before printing?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Voucher Number",
+        "FD Number",
+        "Member ID only",
+        "UTR Number"
       ],
-      correct: ""
+      correct: "Voucher Number"
     },
 
     /* 44 */
     {
-      question: "In the Print Voucher process, the details are: A. Entered manually again\nB. Displayed automatically by default\nC. Generated from the RD section only\nD. Taken from the UTR screen",
+      question: "In the Print Voucher process, the details are:",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Entered manually again",
+        "Displayed automatically by default",
+        "Generated from the RD section only",
+        "Taken from the UTR screen"
       ],
-      correct: ""
+      correct: "Displayed automatically by default"
     },
 
     /* 45 */
     {
-      question: "In RTGS List – Interest, what is the default bank head mentioned? A. SBI Bank\nB. CUB Bank\nC. HDFC Bank\nD. Indian Bank",
+      question: "In RTGS List – Interest, what is the default bank head mentioned?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "SBI Bank",
+        "CUB Bank",
+        "HDFC Bank",
+        "Indian Bank"
       ],
-      correct: ""
+      correct: "CUB Bank"
     },
 
     /* 46 */
     {
-      question: "For RTGS List – Interest, what must be selected before printing? A. Particular date and bank head\nB. Member ID and RD Number\nC. Loan Number and UTR\nD. FD Number and nominee",
+      question: "For RTGS List – Interest, what must be selected before printing?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Particular date and bank head",
+        "Member ID and RD Number",
+        "Loan Number and UTR",
+        "FD Number and nominee"
       ],
-      correct: ""
+      correct: "Particular date and bank head"
     },
 
     /* 47 */
     {
-      question: "What is the purpose of the FD Calendar? A. To retrieve/print FD calendar details based on Member Number\nB. To create a new FD\nC. To calculate salary\nD. To create a loan",
+      question: "What is the purpose of the FD Calendar?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "To retrieve/print FD calendar details based on Member Number",
+        "To create a new FD",
+        "To calculate salary",
+        "To create a loan"
       ],
-      correct: ""
+      correct: "To retrieve/print FD calendar details based on Member Number"
     },
 
     /* 48 */
     {
-      question: "In UTR Check, which two pieces of information are used for verification? A. Date and UTR Number\nB. Member Number and DOB\nC. FD Number and ROI\nD. Receipt Number and Voucher Number",
+      question: "In UTR Check, which two pieces of information are used for verification?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "Date and UTR Number",
+        "Member Number and DOB",
+        "FD Number and ROI",
+        "Receipt Number and Voucher Number"
       ],
-      correct: ""
+      correct: "Date and UTR Number"
     },
 
     /* 49 */
     {
-      question: "What should be verified after entering the UTR Number? A. FD/RD details with the payment reference\nB. Employee attendance\nC. Loan eligibility\nD. Member salary",
+      question: "What should be verified after entering the UTR Number?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "FD/RD details with the payment reference",
+        "Employee attendance",
+        "Loan eligibility",
+        "Member salary"
       ],
-      correct: ""
+      correct: "FD/RD details with the payment reference"
     },
 
     /* 50 */
     {
-      question: "For a Renewal FD DS Bond, which serial number should be entered? A. A new serial number every time\nB. The previous serial number\nC. The Member Number\nD. The UTR Number ANSWERS – SET 2",
+      question: "For a Renewal FD DS Bond, which serial number should be entered?",
       options: [
-        "",
-        "",
-        "",
-        ""
+        "A new serial number every time",
+        "The previous serial number",
+        "The Member Number",
+        "The UTR Number"
       ],
-      correct: ""
+      correct: "The previous serial number"
     }
 
   ];
@@ -736,10 +738,6 @@ startBtn.addEventListener("click", () => {
       label.innerHTML = `<input type="radio" name="option" value="${opt}" class="mr-2">${opt}`;
       optionsEl.appendChild(label);
     });
-
-    hideTimer = setTimeout(() => {
-      questionEl.style.visibility = "hidden";
-    }, QUESTION_VISIBLE_TIME * 1000);
 
     timeLeft = QUESTION_TIME;
     updateTimer();
