@@ -1,988 +1,1798 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Secure Online Quiz - 50 Front Desk Training Questions</title>
+\<!DOCTYPE html>
 
-<link rel="icon" type="image/png" href="image.png">
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://accounts.google.com/gsi/client" async defer></script>
+\<html lang="en">
 
-<!-- EmailJS -->
-<script type="text/javascript"
-  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+\<head>
 
-<script type="text/javascript">
-  emailjs.init('AQrOoA9vgEUwlbyma'); // ✅ your public key
-</script>
+\<meta charset="UTF-8">
 
-<style>
+\<title>Secure Online Quiz - 50 Front Desk Training Questions\</title>
+
+
+
+\<link rel="icon" type="image/png" href="image.png">
+
+\<script src="https\://cdn.tailwindcss.com">\</script>
+
+
+
+\<!-- EmailJS -->
+
+\<script type="text/javascript"
+
+  src="https\://cdn.jsdelivr.net/npm/@emailjs/browser\@4/dist/email.min.js">\</script>
+
+
+
+\<script type="text/javascript">
+
+  emailjs.init('AQrOoA9vgEUwlbyma'); // ✅ your public key
+
+\</script>
+
+
+
+\<style>
+
 @keyframes scrollRightToLeft {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
+
+  0% { transform: translateX(100%); }
+
+  100% { transform: translateX(-100%); }
+
 }
+
 .scrolling-question {
-  white-space: normal;
-  overflow-wrap: break-word;
-  word-break: normal;
-  animation: none;
+
+  white-space: normal;
+
+  overflow-wrap: break-word;
+
+  word-break: normal;
+
+  animation: none;
+
 }
-</style>
-</head>
 
-<body class="bg-slate-100 h-screen flex items-center justify-center overflow-hidden">
+\</style>
 
-<div class="bg-white shadow-2xl rounded-xl w-full max-w-xl p-6 max-h-[90vh] overflow-hidden">
-
-<!-- LOGIN -->
-<div id="login">
-  <div class="flex justify-center mb-4">
-    <img src="THECOS_Google_Form_Header.png" class="max-h-24 object-contain">
-  </div>
-
-  <h1 class="text-2xl font-bold text-center mb-4">Online Quiz</h1>
-
-  <input id="studentName" class="w-full border p-2 mb-3 rounded" placeholder="Enter Full Name" required>
-  
-  <div class="mb-4">
-    <p class="text-sm text-gray-600 mb-2">Enter your full name and sign in with your Google account. Your email will be fetched automatically.</p>
-    <div id="googleSignInButton" class="flex justify-center"></div>
-    <p id="googleStatus" class="text-sm text-center mt-2 text-gray-600"></p>
-  </div>
-
-  <input id="studentEmail" type="hidden">
+\</head>
 
 
-  <button id="startBtn" class="w-full bg-blue-600 text-white py-2 rounded">
-    Start Quiz
-  </button>
-</div>
 
-<!-- EXAM -->
-<div id="exam" class="hidden h-full flex flex-col">
+\<body class="bg-slate-100 h-screen flex items-center justify-center overflow-hidden">
 
-  <div class="flex justify-between mb-3">
-    <span id="timer" class="text-red-600 font-bold"></span>
-    <span class="text-sm text-gray-500">Tab switching disabled</span>
-  </div>
 
-  <div class="flex-1 overflow-y-auto">
-    <div class="overflow-hidden mb-4">
-      <h2 id="question" class="font-semibold text-lg"></h2>
-    </div>
-    <div id="options" class="space-y-2"></div>
-  </div>
 
-  <div class="pt-4 border-t">
-    <button id="nextBtn" class="bg-green-600 text-white px-5 py-2 rounded w-full">
-      Next
-    </button>
-  </div>
-</div>
+\<div class="bg-white shadow-2xl rounded-xl w-full max-w-xl p-6 max-h-[90vh] overflow-hidden">
 
-<!-- THANK YOU -->
-<div id="thankyou" class="hidden text-center">
-  <h1 class="text-2xl font-bold text-green-600 mb-4">✅ Thank You</h1>
-  <p class="text-gray-700 mb-2">Your exam has been submitted successfully.</p>
-  <p class="text-gray-500">You may now close this page.</p>
-</div>
 
-</div>
 
-<script>
+\<!-- LOGIN -->
+
+\<div id="login">
+
+  \<div class="flex justify-center mb-4">
+
+    \<img src="THECOS_Google_Form_Header.png" class="max-h-24 object-contain">
+
+  \</div>
+
+
+
+  \<h1 class="text-2xl font-bold text-center mb-4">Online Quiz\</h1>
+
+
+
+  \<input id="studentName" class="w-full border p-2 mb-3 rounded" placeholder="Enter Full Name">
+
+  \<input id="studentEmail" type="email" class="w-full border p-2 mb-2 rounded" placeholder="Enter Email Address">
+  <p class="text-xs text-red-600 mb-4">
+    ⚠️ Each email address can be used for this exam only once on this browser/device.
+  </p>
+
+
+
+  \<button id="startBtn" class="w-full bg-blue-600 text-white py-2 rounded">
+
+    Start Quiz
+
+  \</button>
+
+\</div>
+
+
+
+\<!-- EXAM -->
+
+\<div id="exam" class="hidden h-full flex flex-col">
+
+
+
+  \<div class="flex justify-between mb-3">
+
+    \<span id="timer" class="text-red-600 font-bold">\</span>
+
+    \<span class="text-sm text-gray-500">Tab switching disabled\</span>
+
+  \</div>
+
+
+
+  \<div class="flex-1 overflow-y-auto">
+
+    \<div class="overflow-hidden mb-4">
+
+      \<h2 id="question" class="font-semibold text-lg">\</h2>
+
+    \</div>
+
+    \<div id="options" class="space-y-2">\</div>
+
+  \</div>
+
+
+
+  \<div class="pt-4 border-t">
+
+    \<button id="nextBtn" class="bg-green-600 text-white px-5 py-2 rounded w-full">
+
+      Next
+
+    \</button>
+
+  \</div>
+
+\</div>
+
+
+
+\<!-- THANK YOU -->
+
+\<div id="thankyou" class="hidden text-center">
+
+  \<h1 class="text-2xl font-bold text-green-600 mb-4">✅ Thank You\</h1>
+
+  \<p class="text-gray-700 mb-2">Your exam has been submitted successfully.\</p>
+
+  \<p class="text-gray-500">You may now close this page.\</p>
+
+\</div>
+
+
+
+\</div>
+
+
+
+\<script>
+
+
 document.addEventListener("DOMContentLoaded", () => {
 
-  // Google Identity Services configuration.
-  // Replace this with your Google OAuth Web Client ID.
-  const GOOGLE_CLIENT_ID = "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com";
+  // ============================================================
+  // ONE-ATTEMPT PROTECTION
+  // The email address is used as the candidate's attempt key.
+  // The attempt is locked immediately when Start Quiz is clicked.
+  // ============================================================
+  const ATTEMPT_KEY_PREFIX = "THECOS_FRONT_DESK_EXAM_ATTEMPT_";
 
-  let googleSignedIn = false;
-
-  function handleGoogleCredential(response) {
-    try {
-      // Decode the Google ID token payload.
-      const payload = JSON.parse(
-        decodeURIComponent(
-          atob(response.credential.split(".")[1].replace(/-/g, "+").replace(/_/g, "/"))
-            .split("")
-            .map(c => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
-            .join("")
-        )
-      );
-
-      if (!payload.email) {
-        throw new Error("Google did not return an email address.");
-      }
-
-      const email = payload.email.trim().toLowerCase();
-      const name = payload.name || payload.given_name || "";
-
-      if (!nameInput.value.trim() && name) {
-        nameInput.value = name;
-      }
-      emailInput.value = email;
-      googleSignedIn = true;
-
-      const completedKey = "THECOS_FRONT_DESK_EXAM_COMPLETED_" + email;
-
-      if (localStorage.getItem(completedKey) === "1") {
-        googleStatus.textContent =
-          "This Google account has already completed the exam.";
-        googleStatus.className = "text-sm text-center mt-2 text-red-600";
-        startBtn.disabled = true;
-        startBtn.classList.add("opacity-50", "cursor-not-allowed");
-      } else {
-        googleStatus.textContent = "Signed in as " + email;
-        googleStatus.className = "text-sm text-center mt-2 text-green-600";
-        startBtn.disabled = false;
-        startBtn.classList.remove("opacity-50", "cursor-not-allowed");
-      }
-    } catch (err) {
-      console.error("Google sign-in error:", err);
-      googleStatus.textContent = "Could not read your Google account. Please try again.";
-      googleStatus.className = "text-sm text-center mt-2 text-red-600";
-      googleSignedIn = false;
-    }
+  function normalizeEmail(email) {
+    return email.trim().toLowerCase();
   }
 
-  const googleStatus = document.getElementById("googleStatus");
+  function attemptKey(email) {
+    return ATTEMPT_KEY_PREFIX + encodeURIComponent(normalizeEmail(email));
+  }
 
-  window.addEventListener("load", () => {
-    if (!window.google || !google.accounts || !google.accounts.id) {
-      googleStatus.textContent =
-        "Google Sign-In could not load. Check your internet connection.";
-      googleStatus.className = "text-sm text-center mt-2 text-red-600";
-      return;
-    }
+  function hasUsedAttempt(email) {
+    return !!localStorage.getItem(attemptKey(email));
+  }
 
-    if (GOOGLE_CLIENT_ID === "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com") {
-      googleStatus.textContent =
-        "Google Sign-In needs your Google OAuth Client ID to be configured.";
-      googleStatus.className = "text-sm text-center mt-2 text-orange-600";
-      return;
-    }
+  function lockAttempt(email) {
+    localStorage.setItem(attemptKey(email), JSON.stringify({
+      status: "started",
+      startedAt: new Date().toISOString()
+    }));
+  }
 
-    google.accounts.id.initialize({
-      client_id: GOOGLE_CLIENT_ID,
-      callback: handleGoogleCredential,
-      auto_select: false
-    });
-
-    google.accounts.id.renderButton(
-      document.getElementById("googleSignInButton"),
-      {
-        theme: "outline",
-        size: "large",
-        text: "signin_with",
-        shape: "rectangular",
-        width: 300
-      }
-    );
-  });
+  function markCompleted(email) {
+    localStorage.setItem(attemptKey(email), JSON.stringify({
+      status: "completed",
+      completedAt: new Date().toISOString()
+    }));
+  }
 
 
-  const QUESTION_VISIBLE_TIME = 30;
-  const QUESTION_TIME = 30;
-
-     const QUIZ_QUESTIONS = [
-    /* 1 */
-    {
-      question: "Member Admission After entering all required member details, what is the correct final step before confirming successful creation?",
-      options: [
-        "Click Print and proceed to FD",
-        "Click Save and wait for the confirmation pop-up",
-        "Click Admission again",
-        "Generate an FD Number"
-      ],
-      correct: "Click Save and wait for the confirmation pop-up"
-    },
-
-    /* 2 */
-    {
-      question: "Which combination contains only details specifically listed for Member Admission?",
-      options: [
-        "Name, DOB, Mobile No., Aadhaar No.",
-        "Salary, PF No., Designation, DOB",
-        "FD Number, ROI, Nominee, Salary",
-        "Loan Number, Address, ROI, PAN"
-      ],
-      correct: "Name, DOB, Mobile No., Aadhaar No."
-    },
-
-    /* 3 */
-    {
-      question: "A staff member has entered the member details but has not received the confirmation message after clicking Save. Based on the PPT, what should the staff member do?",
-      options: [
-        "Immediately create another member",
-        "Wait for the confirmation pop-up",
-        "Proceed directly to FD Renewal",
-        "Print the member number"
-      ],
-      correct: "Wait for the confirmation pop-up"
-    },
-
-    /* 4 */
-    {
-      question: "For a Fresh FD, which sequence is most appropriate?",
-      options: [
-        "Select scheme → enter payment → enter member → close deposit",
-        "Enter member → fill mobile/nominee/account details → select scheme/amount → select payment details → save",
-        "Enter FD number → renew → select scheme",
-        "Enter UTR → select FD number → print bond"
-      ],
-      correct: "Enter member → fill mobile/nominee/account details → select scheme/amount → select payment details → save"
-    },
-
-    /* 5 */
-    {
-      question: "Which statement about Fresh FD creation is correct?",
-      options: [
-        "FD Number must always be manually entered",
-        "Date and next FD Number are generated automatically",
-        "ROI must always be manually calculated",
-        "Maturity Amount must always be manually calculated"
-      ],
-      correct: "Date and next FD Number are generated automatically"
-    },
-
-    /* 6 */
-    {
-      question: "A member pays ₹1,00,000 as ₹50,000 cash and ₹50,000 by SBI cheque. What should the staff do?",
-      options: [
-        "Select only Cash and ignore the cheque",
-        "Select only Cheque and enter ₹1,00,000",
-        "Select both payment modes, enter cheque number and cash denominations",
-        "Create two separate FDs automatically"
-      ],
-      correct: "Select both payment modes, enter cheque number and cash denominations"
-    },
-
-    /* 7 */
-    {
-      question: "After selecting the required FD options, which three items are reflected automatically?",
-      options: [
-        "Member Number, Aadhaar and PAN",
-        "Period, ROI and Maturity Amount",
-        "Nominee, Address and Mobile Number",
-        "FD Number, Cheque Number and UTR"
-      ],
-      correct: "Period, ROI and Maturity Amount"
-    },
-
-    /* 8 */
-    {
-      question: "Which action completes the Fresh FD saving process?",
-      options: [
-        "Click Renew Deposit",
-        "Click Close Deposit",
-        "Click Save New Deposit and wait for confirmation",
-        "Click Print Certificate"
-      ],
-      correct: "Click Save New Deposit and wait for confirmation"
-    },
-
-    /* 9 */
-    {
-      question: "During FD Renewal, the first purpose of entering the Member ID is to:",
-      options: [
-        "Generate a new member",
-        "Check whether any FD bonds have matured or are due for renewal",
-        "Generate a loan number",
-        "Print an RD receipt"
-      ],
-      correct: "Check whether any FD bonds have matured or are due for renewal"
-    },
-
-    /* 10 */
-    {
-      question: "Before renewing an FD, which existing document/detail should be specifically verified?",
-      options: [
-        "Attendance register",
-        "Previous FD bond",
-        "Employee ID card",
-        "Voucher book"
-      ],
-      correct: "Previous FD bond"
-    },
-
-    /* 11 */
-    {
-      question: "A member wants to renew an FD but is unsure whether to retain the same amount. What should the staff confirm?",
-      options: [
-        "Only the member's mobile number",
-        "Whether the same amount should be renewed and whether there are changes in scheme or other details",
-        "Only the bank name",
-        "Only the nominee's name"
-      ],
-      correct: "Whether the same amount should be renewed and whether there are changes in scheme or other details"
-    },
-
-    /* 12 */
-    {
-      question: "Which combination represents the FD renewal choices mentioned in the PPT?",
-      options: [
-        "Cash / Cheque",
-        "Monthly / Cumulative",
-        "Fresh / Closed",
-        "Principal / Loan"
-      ],
-      correct: "Monthly / Cumulative"
-    },
-
-    /* 13 */
-    {
-      question: "A Monthly Interest FD is being renewed. The system calculates the current month's interest by default. What should be done?",
-      options: [
-        "Renew principal plus current month's interest",
-        "Renew only the principal and pay the current month's interest separately",
-        "Cancel the FD",
-        "Convert it into a Cumulative FD"
-      ],
-      correct: "Renew only the principal and pay the current month's interest separately"
-    },
-
-    /* 14 */
-    {
-      question: "For a Cumulative FD, the renewal is processed with:",
-      options: [
-        "The same amount",
-        "Only the monthly interest",
-        "The cash portion only",
-        "The cheque portion only"
-      ],
-      correct: "The same amount"
-    },
-
-    /* 15 */
-    {
-      question: "Which information is specifically required during FD closure verification?",
-      options: [
-        "Amount and bank details",
-        "Employee salary and designation",
-        "RD duration and ROI",
-        "Voucher number and UTR"
-      ],
-      correct: "Amount and bank details"
-    },
-
-    /* 16 */
-    {
-      question: "Which is the correct process for FD closure?",
-      options: [
-        "Enter Member ID → Renew → Print",
-        "Click Close Deposit → type FD Number → verify amount and bank details → Close Deposit",
-        "Select RD Number → Save → Close",
-        "Enter UTR → Print → Close"
-      ],
-      correct: "Click Close Deposit → type FD Number → verify amount and bank details → Close Deposit"
-    },
-
-    /* 17 */
-    {
-      question: "During RD creation, the ROI depends on:",
-      options: [
-        "Member's age",
-        "Selected duration",
-        "Payment mode",
-        "Nominee's age"
-      ],
-      correct: "Selected duration"
-    },
-
-    /* 18 */
-    {
-      question: "If an RD duration is changed, which item may change according to the PPT?",
-      options: [
-        "ROI",
-        "Member Number",
-        "Aadhaar Number",
-        "Receipt Number"
-      ],
-      correct: "ROI"
-    },
-
-    /* 19 */
-    {
-      question: "Which sequence is appropriate for creating an RD?",
-      options: [
-        "Enter member details → verify member information → enter amount/duration → system generates ROI → Create RD",
-        "Enter UTR → select ROI → close RD",
-        "Enter cheque number → print → create member",
-        "Enter FD Number → renew → create RD"
-      ],
-      correct: "Enter member details → verify member information → enter amount/duration → system generates ROI → Create RD"
-    },
-
-    /* 20 */
-    {
-      question: "While creating an RD, which combination must be verified?",
-      options: [
-        "Name, DOB, Nominee Details and Address",
-        "Salary, PF and HRA",
-        "FD Number, ROI and bank balance",
-        "Loan Number, UTR and voucher number"
-      ],
-      correct: "Name, DOB, Nominee Details and Address"
-    },
-
-    /* 21 */
-    {
-      question: "For an RD receipt by cheque, after entering the Member ID, what happens?",
-      options: [
-        "All member details are displayed automatically",
-        "A new Member Number is generated",
-        "ROI must be calculated manually",
-        "The RD is automatically closed"
-      ],
-      correct: "All member details are displayed automatically"
-    },
-
-    /* 22 */
-    {
-      question: "What additional information is required for an RD cash receipt?",
-      options: [
-        "Cash denominations",
-        "Cheque Number",
-        "FD Scheme",
-        "Loan Number"
-      ],
-      correct: "Cash denominations"
-    },
-
-    /* 23 */
-    {
-      question: "In FD Loan creation, which detail connects the loan to the FD?",
-      options: [
-        "RD Number",
-        "FD Number",
-        "Voucher Number",
-        "UTR Number"
-      ],
-      correct: "FD Number"
-    },
-
-    /* 24 */
-    {
-      question: "Which action is required after entering the FD Loan details?",
-      options: [
-        "Click Sanction",
-        "Click Renew",
-        "Click Close Deposit",
-        "Click Print Voucher"
-      ],
-      correct: "Click Sanction"
-    },
-
-    /* 25 */
-    {
-      question: "Which set contains the details specifically listed for an FD Loan?",
-      options: [
-        "Member Number, DOB, FD Number, Nominee Details, Address and Payment Mode",
-        "RD Number, ROI, Share Amount and UTR",
-        "Salary, PF, HRA and PAN",
-        "Voucher Number, Receipt Number and Cheque Number"
-      ],
-      correct: "Member Number, DOB, FD Number, Nominee Details, Address and Payment Mode"
-    },
-
-    /* 26 */
-    {
-      question: "Which detail is required for creating an FD Loan Receipt in addition to the Member Number?",
-      options: [
-        "Loan Number",
-        "RD Number",
-        "Share Number",
-        "Voucher Number"
-      ],
-      correct: "Loan Number"
-    },
-
-    /* 27 */
-    {
-      question: "For Gold Loan creation, which two values are displayed automatically?",
-      options: [
-        "Loan Number and ROI",
-        "Member Number and DOB",
-        "FD Number and maturity date",
-        "UTR Number and receipt number"
-      ],
-      correct: "Loan Number and ROI"
-    },
-
-    /* 28 */
-    {
-      question: "Which combination is required for Gold Loan creation?",
-      options: [
-        "Name, Member Number, Mobile Number, Account Details, Address, Amount, Months and Payment",
-        "Only Member Number and FD Number",
-        "Only Name and Amount",
-        "Receipt Number and Voucher Number"
-      ],
-      correct: "Name, Member Number, Mobile Number, Account Details, Address, Amount, Months and Payment"
-    },
-
-    /* 29 */
-    {
-      question: "A Gold Loan cash receipt is being prepared. Which information should be entered after selecting the GL Number?",
-      options: [
-        "Cash denominations",
-        "Cheque Number",
-        "FD Scheme",
-        "RD Duration"
-      ],
-      correct: "Cash denominations"
-    },
-
-    /* 30 */
-    {
-      question: "A Gold Loan cheque receipt is being prepared. Which information should be entered?",
-      options: [
-        "Cash denominations",
-        "Cheque Number",
-        "FD Number",
-        "Share Amount"
-      ],
-      correct: "Cheque Number"
-    },
-
-    /* 31 */
-    {
-      question: "In HML creation, which values are automatically displayed?",
-      options: [
-        "HML Number and ROI",
-        "Member Number and Aadhaar",
-        "FD Number and maturity amount",
-        "Voucher Number and UTR"
-      ],
-      correct: "HML Number and ROI"
-    },
-
-    /* 32 */
-    {
-      question: "Which action completes HML creation according to the PPT?",
-      options: [
-        "Click Create HML and wait for confirmation",
-        "Click Renew Deposit",
-        "Click Close Deposit",
-        "Click Print Voucher"
-      ],
-      correct: "Click Create HML and wait for confirmation"
-    },
-
-    /* 33 */
-    {
-      question: "Which loan requires selecting both Colour and Model?",
-      options: [
-        "FD Loan",
-        "Gold Loan",
-        "HML Loan",
-        "ML Loan"
-      ],
-      correct: "ML Loan"
-    },
-
-    /* 34 */
-    {
-      question: "Which action is used to create an ML after entering the required details?",
-      options: [
-        "Sanction",
-        "Renew",
-        "Close",
-        "Print"
-      ],
-      correct: "Sanction"
-    },
-
-    /* 35 */
-    {
-      question: "In an ML cheque receipt, which information is entered after selecting the ML Number?",
-      options: [
-        "Cheque Number, if applicable",
-        "Cash denominations only",
-        "FD Scheme",
-        "UTR Number"
-      ],
-      correct: "Cheque Number, if applicable"
-    },
-
-    /* 36 */
-    {
-      question: "Which statement about MSME Loan creation is correct?",
-      options: [
-        "MCL Number and ROI are displayed automatically by default",
-        "FD Number must be entered",
-        "RD Number is automatically generated",
-        "Colour and Model must be selected"
-      ],
-      correct: "MCL Number and ROI are displayed automatically by default"
-    },
-
-    /* 37 */
-    {
-      question: "For an MSME cash receipt, what should be entered after selecting the MSME Number?",
-      options: [
-        "Cash denomination details",
-        "Cheque Number",
-        "FD Number",
-        "Nominee Aadhaar only"
-      ],
-      correct: "Cash denomination details"
-    },
-
-    /* 38 */
-    {
-      question: "For an MSME cheque receipt, which additional information is required?",
-      options: [
-        "Cheque Number",
-        "Cash denominations",
-        "FD Scheme",
-        "RD Duration"
-      ],
-      correct: "Cheque Number"
-    },
-
-    /* 39 */
-    {
-      question: "Which combination is specifically required for New Share creation?",
-      options: [
-        "Aadhaar, PAN, Share Amount and Payment",
-        "FD Number, ROI and Maturity Amount",
-        "Loan Number, UTR and Cheque Number",
-        "RD Number and Duration only"
-      ],
-      correct: "Aadhaar, PAN, Share Amount and Payment"
-    },
-
-    /* 40 */
-    {
-      question: "After entering New Share details, which option should be selected?",
-      options: [
-        "Save New Share",
-        "Create GL",
-        "Renew Deposit",
-        "Close Deposit"
-      ],
-      correct: "Save New Share"
-    },
-
-    /* 41 */
-    {
-      question: "To print a receipt, what is the first key information mentioned in the PPT?",
-      options: [
-        "Receipt Number",
-        "UTR Number",
-        "FD Number",
-        "Member Salary"
-      ],
-      correct: "Receipt Number"
-    },
-
-    /* 42 */
-    {
-      question: "What should be done before printing a receipt?",
-      options: [
-        "Verify the details",
-        "Renew the FD",
-        "Create a new member",
-        "Close the account"
-      ],
-      correct: "Verify the details"
-    },
-
-    /* 43 */
-    {
-      question: "In the Voucher section, what is selected before printing?",
-      options: [
-        "Voucher Number",
-        "FD Number",
-        "Member ID only",
-        "UTR Number"
-      ],
-      correct: "Voucher Number"
-    },
-
-    /* 44 */
-    {
-      question: "In the Print Voucher process, the details are:",
-      options: [
-        "Entered manually again",
-        "Displayed automatically by default",
-        "Generated from the RD section only",
-        "Taken from the UTR screen"
-      ],
-      correct: "Displayed automatically by default"
-    },
-
-    /* 45 */
-    {
-      question: "In RTGS List – Interest, what is the default bank head mentioned?",
-      options: [
-        "SBI Bank",
-        "CUB Bank",
-        "HDFC Bank",
-        "Indian Bank"
-      ],
-      correct: "CUB Bank"
-    },
-
-    /* 46 */
-    {
-      question: "For RTGS List – Interest, what must be selected before printing?",
-      options: [
-        "Particular date and bank head",
-        "Member ID and RD Number",
-        "Loan Number and UTR",
-        "FD Number and nominee"
-      ],
-      correct: "Particular date and bank head"
-    },
-
-    /* 47 */
-    {
-      question: "What is the purpose of the FD Calendar?",
-      options: [
-        "To retrieve/print FD calendar details based on Member Number",
-        "To create a new FD",
-        "To calculate salary",
-        "To create a loan"
-      ],
-      correct: "To retrieve/print FD calendar details based on Member Number"
-    },
-
-    /* 48 */
-    {
-      question: "In UTR Check, which two pieces of information are used for verification?",
-      options: [
-        "Date and UTR Number",
-        "Member Number and DOB",
-        "FD Number and ROI",
-        "Receipt Number and Voucher Number"
-      ],
-      correct: "Date and UTR Number"
-    },
-
-    /* 49 */
-    {
-      question: "What should be verified after entering the UTR Number?",
-      options: [
-        "FD/RD details with the payment reference",
-        "Employee attendance",
-        "Loan eligibility",
-        "Member salary"
-      ],
-      correct: "FD/RD details with the payment reference"
-    },
-
-    /* 50 */
-    {
-      question: "For a Renewal FD DS Bond, which serial number should be entered?",
-      options: [
-        "A new serial number every time",
-        "The previous serial number",
-        "The Member Number",
-        "The UTR Number"
-      ],
-      correct: "The previous serial number"
-    }
-
-  ];
 
 
-  const login = document.getElementById("login");
-  const exam = document.getElementById("exam");
-  const thankyou = document.getElementById("thankyou");
-  const startBtn = document.getElementById("startBtn");
-  const nextBtn = document.getElementById("nextBtn");
+  const QUESTION_VISIBLE_TIME = 30;
 
-  const nameInput = document.getElementById("studentName");
-  const emailInput = document.getElementById("studentEmail");
-  const timerEl = document.getElementById("timer");
-  const questionEl = document.getElementById("question");
-  const optionsEl = document.getElementById("options");
+  const QUESTION_TIME = 30;
 
-  let index = 0;
-  let answers = [];
-  let timer = null;
-  let hideTimer = null;
-  let timeLeft = QUESTION_TIME;
-  let examFinished = false;
+
+
+     const QUIZ_QUESTIONS = [
+
+    /\* 1 \*/
+
+    {
+
+      question: "Member Admission After entering all required member details, what is the correct final step before confirming successful creation?",
+
+      options: [
+
+        "Click Print and proceed to FD",
+
+        "Click Save and wait for the confirmation pop-up",
+
+        "Click Admission again",
+
+        "Generate an FD Number"
+
+      ],
+
+      correct: "Click Save and wait for the confirmation pop-up"
+
+    },
+
+
+
+    /\* 2 \*/
+
+    {
+
+      question: "Which combination contains only details specifically listed for Member Admission?",
+
+      options: [
+
+        "Name, DOB, Mobile No., Aadhaar No.",
+
+        "Salary, PF No., Designation, DOB",
+
+        "FD Number, ROI, Nominee, Salary",
+
+        "Loan Number, Address, ROI, PAN"
+
+      ],
+
+      correct: "Name, DOB, Mobile No., Aadhaar No."
+
+    },
+
+
+
+    /\* 3 \*/
+
+    {
+
+      question: "A staff member has entered the member details but has not received the confirmation message after clicking Save. Based on the PPT, what should the staff member do?",
+
+      options: [
+
+        "Immediately create another member",
+
+        "Wait for the confirmation pop-up",
+
+        "Proceed directly to FD Renewal",
+
+        "Print the member number"
+
+      ],
+
+      correct: "Wait for the confirmation pop-up"
+
+    },
+
+
+
+    /\* 4 \*/
+
+    {
+
+      question: "For a Fresh FD, which sequence is most appropriate?",
+
+      options: [
+
+        "Select scheme → enter payment → enter member → close deposit",
+
+        "Enter member → fill mobile/nominee/account details → select scheme/amount → select payment details → save",
+
+        "Enter FD number → renew → select scheme",
+
+        "Enter UTR → select FD number → print bond"
+
+      ],
+
+      correct: "Enter member → fill mobile/nominee/account details → select scheme/amount → select payment details → save"
+
+    },
+
+
+
+    /\* 5 \*/
+
+    {
+
+      question: "Which statement about Fresh FD creation is correct?",
+
+      options: [
+
+        "FD Number must always be manually entered",
+
+        "Date and next FD Number are generated automatically",
+
+        "ROI must always be manually calculated",
+
+        "Maturity Amount must always be manually calculated"
+
+      ],
+
+      correct: "Date and next FD Number are generated automatically"
+
+    },
+
+
+
+    /\* 6 \*/
+
+    {
+
+      question: "A member pays ₹1,00,000 as ₹50,000 cash and ₹50,000 by SBI cheque. What should the staff do?",
+
+      options: [
+
+        "Select only Cash and ignore the cheque",
+
+        "Select only Cheque and enter ₹1,00,000",
+
+        "Select both payment modes, enter cheque number and cash denominations",
+
+        "Create two separate FDs automatically"
+
+      ],
+
+      correct: "Select both payment modes, enter cheque number and cash denominations"
+
+    },
+
+
+
+    /\* 7 \*/
+
+    {
+
+      question: "After selecting the required FD options, which three items are reflected automatically?",
+
+      options: [
+
+        "Member Number, Aadhaar and PAN",
+
+        "Period, ROI and Maturity Amount",
+
+        "Nominee, Address and Mobile Number",
+
+        "FD Number, Cheque Number and UTR"
+
+      ],
+
+      correct: "Period, ROI and Maturity Amount"
+
+    },
+
+
+
+    /\* 8 \*/
+
+    {
+
+      question: "Which action completes the Fresh FD saving process?",
+
+      options: [
+
+        "Click Renew Deposit",
+
+        "Click Close Deposit",
+
+        "Click Save New Deposit and wait for confirmation",
+
+        "Click Print Certificate"
+
+      ],
+
+      correct: "Click Save New Deposit and wait for confirmation"
+
+    },
+
+
+
+    /\* 9 \*/
+
+    {
+
+      question: "During FD Renewal, the first purpose of entering the Member ID is to:",
+
+      options: [
+
+        "Generate a new member",
+
+        "Check whether any FD bonds have matured or are due for renewal",
+
+        "Generate a loan number",
+
+        "Print an RD receipt"
+
+      ],
+
+      correct: "Check whether any FD bonds have matured or are due for renewal"
+
+    },
+
+
+
+    /\* 10 \*/
+
+    {
+
+      question: "Before renewing an FD, which existing document/detail should be specifically verified?",
+
+      options: [
+
+        "Attendance register",
+
+        "Previous FD bond",
+
+        "Employee ID card",
+
+        "Voucher book"
+
+      ],
+
+      correct: "Previous FD bond"
+
+    },
+
+
+
+    /\* 11 \*/
+
+    {
+
+      question: "A member wants to renew an FD but is unsure whether to retain the same amount. What should the staff confirm?",
+
+      options: [
+
+        "Only the member's mobile number",
+
+        "Whether the same amount should be renewed and whether there are changes in scheme or other details",
+
+        "Only the bank name",
+
+        "Only the nominee's name"
+
+      ],
+
+      correct: "Whether the same amount should be renewed and whether there are changes in scheme or other details"
+
+    },
+
+
+
+    /\* 12 \*/
+
+    {
+
+      question: "Which combination represents the FD renewal choices mentioned in the PPT?",
+
+      options: [
+
+        "Cash / Cheque",
+
+        "Monthly / Cumulative",
+
+        "Fresh / Closed",
+
+        "Principal / Loan"
+
+      ],
+
+      correct: "Monthly / Cumulative"
+
+    },
+
+
+
+    /\* 13 \*/
+
+    {
+
+      question: "A Monthly Interest FD is being renewed. The system calculates the current month's interest by default. What should be done?",
+
+      options: [
+
+        "Renew principal plus current month's interest",
+
+        "Renew only the principal and pay the current month's interest separately",
+
+        "Cancel the FD",
+
+        "Convert it into a Cumulative FD"
+
+      ],
+
+      correct: "Renew only the principal and pay the current month's interest separately"
+
+    },
+
+
+
+    /\* 14 \*/
+
+    {
+
+      question: "For a Cumulative FD, the renewal is processed with:",
+
+      options: [
+
+        "The same amount",
+
+        "Only the monthly interest",
+
+        "The cash portion only",
+
+        "The cheque portion only"
+
+      ],
+
+      correct: "The same amount"
+
+    },
+
+
+
+    /\* 15 \*/
+
+    {
+
+      question: "Which information is specifically required during FD closure verification?",
+
+      options: [
+
+        "Amount and bank details",
+
+        "Employee salary and designation",
+
+        "RD duration and ROI",
+
+        "Voucher number and UTR"
+
+      ],
+
+      correct: "Amount and bank details"
+
+    },
+
+
+
+    /\* 16 \*/
+
+    {
+
+      question: "Which is the correct process for FD closure?",
+
+      options: [
+
+        "Enter Member ID → Renew → Print",
+
+        "Click Close Deposit → type FD Number → verify amount and bank details → Close Deposit",
+
+        "Select RD Number → Save → Close",
+
+        "Enter UTR → Print → Close"
+
+      ],
+
+      correct: "Click Close Deposit → type FD Number → verify amount and bank details → Close Deposit"
+
+    },
+
+
+
+    /\* 17 \*/
+
+    {
+
+      question: "During RD creation, the ROI depends on:",
+
+      options: [
+
+        "Member's age",
+
+        "Selected duration",
+
+        "Payment mode",
+
+        "Nominee's age"
+
+      ],
+
+      correct: "Selected duration"
+
+    },
+
+
+
+    /\* 18 \*/
+
+    {
+
+      question: "If an RD duration is changed, which item may change according to the PPT?",
+
+      options: [
+
+        "ROI",
+
+        "Member Number",
+
+        "Aadhaar Number",
+
+        "Receipt Number"
+
+      ],
+
+      correct: "ROI"
+
+    },
+
+
+
+    /\* 19 \*/
+
+    {
+
+      question: "Which sequence is appropriate for creating an RD?",
+
+      options: [
+
+        "Enter member details → verify member information → enter amount/duration → system generates ROI → Create RD",
+
+        "Enter UTR → select ROI → close RD",
+
+        "Enter cheque number → print → create member",
+
+        "Enter FD Number → renew → create RD"
+
+      ],
+
+      correct: "Enter member details → verify member information → enter amount/duration → system generates ROI → Create RD"
+
+    },
+
+
+
+    /\* 20 \*/
+
+    {
+
+      question: "While creating an RD, which combination must be verified?",
+
+      options: [
+
+        "Name, DOB, Nominee Details and Address",
+
+        "Salary, PF and HRA",
+
+        "FD Number, ROI and bank balance",
+
+        "Loan Number, UTR and voucher number"
+
+      ],
+
+      correct: "Name, DOB, Nominee Details and Address"
+
+    },
+
+
+
+    /\* 21 \*/
+
+    {
+
+      question: "For an RD receipt by cheque, after entering the Member ID, what happens?",
+
+      options: [
+
+        "All member details are displayed automatically",
+
+        "A new Member Number is generated",
+
+        "ROI must be calculated manually",
+
+        "The RD is automatically closed"
+
+      ],
+
+      correct: "All member details are displayed automatically"
+
+    },
+
+
+
+    /\* 22 \*/
+
+    {
+
+      question: "What additional information is required for an RD cash receipt?",
+
+      options: [
+
+        "Cash denominations",
+
+        "Cheque Number",
+
+        "FD Scheme",
+
+        "Loan Number"
+
+      ],
+
+      correct: "Cash denominations"
+
+    },
+
+
+
+    /\* 23 \*/
+
+    {
+
+      question: "In FD Loan creation, which detail connects the loan to the FD?",
+
+      options: [
+
+        "RD Number",
+
+        "FD Number",
+
+        "Voucher Number",
+
+        "UTR Number"
+
+      ],
+
+      correct: "FD Number"
+
+    },
+
+
+
+    /\* 24 \*/
+
+    {
+
+      question: "Which action is required after entering the FD Loan details?",
+
+      options: [
+
+        "Click Sanction",
+
+        "Click Renew",
+
+        "Click Close Deposit",
+
+        "Click Print Voucher"
+
+      ],
+
+      correct: "Click Sanction"
+
+    },
+
+
+
+    /\* 25 \*/
+
+    {
+
+      question: "Which set contains the details specifically listed for an FD Loan?",
+
+      options: [
+
+        "Member Number, DOB, FD Number, Nominee Details, Address and Payment Mode",
+
+        "RD Number, ROI, Share Amount and UTR",
+
+        "Salary, PF, HRA and PAN",
+
+        "Voucher Number, Receipt Number and Cheque Number"
+
+      ],
+
+      correct: "Member Number, DOB, FD Number, Nominee Details, Address and Payment Mode"
+
+    },
+
+
+
+    /\* 26 \*/
+
+    {
+
+      question: "Which detail is required for creating an FD Loan Receipt in addition to the Member Number?",
+
+      options: [
+
+        "Loan Number",
+
+        "RD Number",
+
+        "Share Number",
+
+        "Voucher Number"
+
+      ],
+
+      correct: "Loan Number"
+
+    },
+
+
+
+    /\* 27 \*/
+
+    {
+
+      question: "For Gold Loan creation, which two values are displayed automatically?",
+
+      options: [
+
+        "Loan Number and ROI",
+
+        "Member Number and DOB",
+
+        "FD Number and maturity date",
+
+        "UTR Number and receipt number"
+
+      ],
+
+      correct: "Loan Number and ROI"
+
+    },
+
+
+
+    /\* 28 \*/
+
+    {
+
+      question: "Which combination is required for Gold Loan creation?",
+
+      options: [
+
+        "Name, Member Number, Mobile Number, Account Details, Address, Amount, Months and Payment",
+
+        "Only Member Number and FD Number",
+
+        "Only Name and Amount",
+
+        "Receipt Number and Voucher Number"
+
+      ],
+
+      correct: "Name, Member Number, Mobile Number, Account Details, Address, Amount, Months and Payment"
+
+    },
+
+
+
+    /\* 29 \*/
+
+    {
+
+      question: "A Gold Loan cash receipt is being prepared. Which information should be entered after selecting the GL Number?",
+
+      options: [
+
+        "Cash denominations",
+
+        "Cheque Number",
+
+        "FD Scheme",
+
+        "RD Duration"
+
+      ],
+
+      correct: "Cash denominations"
+
+    },
+
+
+
+    /\* 30 \*/
+
+    {
+
+      question: "A Gold Loan cheque receipt is being prepared. Which information should be entered?",
+
+      options: [
+
+        "Cash denominations",
+
+        "Cheque Number",
+
+        "FD Number",
+
+        "Share Amount"
+
+      ],
+
+      correct: "Cheque Number"
+
+    },
+
+
+
+    /\* 31 \*/
+
+    {
+
+      question: "In HML creation, which values are automatically displayed?",
+
+      options: [
+
+        "HML Number and ROI",
+
+        "Member Number and Aadhaar",
+
+        "FD Number and maturity amount",
+
+        "Voucher Number and UTR"
+
+      ],
+
+      correct: "HML Number and ROI"
+
+    },
+
+
+
+    /\* 32 \*/
+
+    {
+
+      question: "Which action completes HML creation according to the PPT?",
+
+      options: [
+
+        "Click Create HML and wait for confirmation",
+
+        "Click Renew Deposit",
+
+        "Click Close Deposit",
+
+        "Click Print Voucher"
+
+      ],
+
+      correct: "Click Create HML and wait for confirmation"
+
+    },
+
+
+
+    /\* 33 \*/
+
+    {
+
+      question: "Which loan requires selecting both Colour and Model?",
+
+      options: [
+
+        "FD Loan",
+
+        "Gold Loan",
+
+        "HML Loan",
+
+        "ML Loan"
+
+      ],
+
+      correct: "ML Loan"
+
+    },
+
+
+
+    /\* 34 \*/
+
+    {
+
+      question: "Which action is used to create an ML after entering the required details?",
+
+      options: [
+
+        "Sanction",
+
+        "Renew",
+
+        "Close",
+
+        "Print"
+
+      ],
+
+      correct: "Sanction"
+
+    },
+
+
+
+    /\* 35 \*/
+
+    {
+
+      question: "In an ML cheque receipt, which information is entered after selecting the ML Number?",
+
+      options: [
+
+        "Cheque Number, if applicable",
+
+        "Cash denominations only",
+
+        "FD Scheme",
+
+        "UTR Number"
+
+      ],
+
+      correct: "Cheque Number, if applicable"
+
+    },
+
+
+
+    /\* 36 \*/
+
+    {
+
+      question: "Which statement about MSME Loan creation is correct?",
+
+      options: [
+
+        "MCL Number and ROI are displayed automatically by default",
+
+        "FD Number must be entered",
+
+        "RD Number is automatically generated",
+
+        "Colour and Model must be selected"
+
+      ],
+
+      correct: "MCL Number and ROI are displayed automatically by default"
+
+    },
+
+
+
+    /\* 37 \*/
+
+    {
+
+      question: "For an MSME cash receipt, what should be entered after selecting the MSME Number?",
+
+      options: [
+
+        "Cash denomination details",
+
+        "Cheque Number",
+
+        "FD Number",
+
+        "Nominee Aadhaar only"
+
+      ],
+
+      correct: "Cash denomination details"
+
+    },
+
+
+
+    /\* 38 \*/
+
+    {
+
+      question: "For an MSME cheque receipt, which additional information is required?",
+
+      options: [
+
+        "Cheque Number",
+
+        "Cash denominations",
+
+        "FD Scheme",
+
+        "RD Duration"
+
+      ],
+
+      correct: "Cheque Number"
+
+    },
+
+
+
+    /\* 39 \*/
+
+    {
+
+      question: "Which combination is specifically required for New Share creation?",
+
+      options: [
+
+        "Aadhaar, PAN, Share Amount and Payment",
+
+        "FD Number, ROI and Maturity Amount",
+
+        "Loan Number, UTR and Cheque Number",
+
+        "RD Number and Duration only"
+
+      ],
+
+      correct: "Aadhaar, PAN, Share Amount and Payment"
+
+    },
+
+
+
+    /\* 40 \*/
+
+    {
+
+      question: "After entering New Share details, which option should be selected?",
+
+      options: [
+
+        "Save New Share",
+
+        "Create GL",
+
+        "Renew Deposit",
+
+        "Close Deposit"
+
+      ],
+
+      correct: "Save New Share"
+
+    },
+
+
+
+    /\* 41 \*/
+
+    {
+
+      question: "To print a receipt, what is the first key information mentioned in the PPT?",
+
+      options: [
+
+        "Receipt Number",
+
+        "UTR Number",
+
+        "FD Number",
+
+        "Member Salary"
+
+      ],
+
+      correct: "Receipt Number"
+
+    },
+
+
+
+    /\* 42 \*/
+
+    {
+
+      question: "What should be done before printing a receipt?",
+
+      options: [
+
+        "Verify the details",
+
+        "Renew the FD",
+
+        "Create a new member",
+
+        "Close the account"
+
+      ],
+
+      correct: "Verify the details"
+
+    },
+
+
+
+    /\* 43 \*/
+
+    {
+
+      question: "In the Voucher section, what is selected before printing?",
+
+      options: [
+
+        "Voucher Number",
+
+        "FD Number",
+
+        "Member ID only",
+
+        "UTR Number"
+
+      ],
+
+      correct: "Voucher Number"
+
+    },
+
+
+
+    /\* 44 \*/
+
+    {
+
+      question: "In the Print Voucher process, the details are:",
+
+      options: [
+
+        "Entered manually again",
+
+        "Displayed automatically by default",
+
+        "Generated from the RD section only",
+
+        "Taken from the UTR screen"
+
+      ],
+
+      correct: "Displayed automatically by default"
+
+    },
+
+
+
+    /\* 45 \*/
+
+    {
+
+      question: "In RTGS List – Interest, what is the default bank head mentioned?",
+
+      options: [
+
+        "SBI Bank",
+
+        "CUB Bank",
+
+        "HDFC Bank",
+
+        "Indian Bank"
+
+      ],
+
+      correct: "CUB Bank"
+
+    },
+
+
+
+    /\* 46 \*/
+
+    {
+
+      question: "For RTGS List – Interest, what must be selected before printing?",
+
+      options: [
+
+        "Particular date and bank head",
+
+        "Member ID and RD Number",
+
+        "Loan Number and UTR",
+
+        "FD Number and nominee"
+
+      ],
+
+      correct: "Particular date and bank head"
+
+    },
+
+
+
+    /\* 47 \*/
+
+    {
+
+      question: "What is the purpose of the FD Calendar?",
+
+      options: [
+
+        "To retrieve/print FD calendar details based on Member Number",
+
+        "To create a new FD",
+
+        "To calculate salary",
+
+        "To create a loan"
+
+      ],
+
+      correct: "To retrieve/print FD calendar details based on Member Number"
+
+    },
+
+
+
+    /\* 48 \*/
+
+    {
+
+      question: "In UTR Check, which two pieces of information are used for verification?",
+
+      options: [
+
+        "Date and UTR Number",
+
+        "Member Number and DOB",
+
+        "FD Number and ROI",
+
+        "Receipt Number and Voucher Number"
+
+      ],
+
+      correct: "Date and UTR Number"
+
+    },
+
+
+
+    /\* 49 \*/
+
+    {
+
+      question: "What should be verified after entering the UTR Number?",
+
+      options: [
+
+        "FD/RD details with the payment reference",
+
+        "Employee attendance",
+
+        "Loan eligibility",
+
+        "Member salary"
+
+      ],
+
+      correct: "FD/RD details with the payment reference"
+
+    },
+
+
+
+    /\* 50 \*/
+
+    {
+
+      question: "For a Renewal FD DS Bond, which serial number should be entered?",
+
+      options: [
+
+        "A new serial number every time",
+
+        "The previous serial number",
+
+        "The Member Number",
+
+        "The UTR Number"
+
+      ],
+
+      correct: "The previous serial number"
+
+    }
+
+
+
+  ];
+
+
+
+
+
+  const login = document.getElementById("login");
+
+  const exam = document.getElementById("exam");
+
+  const thankyou = document.getElementById("thankyou");
+
+  const startBtn = document.getElementById("startBtn");
+
+  const nextBtn = document.getElementById("nextBtn");
+
+
+
+  const nameInput = document.getElementById("studentName");
+
+  const emailInput = document.getElementById("studentEmail");
+
+  const timerEl = document.getElementById("timer");
+
+  const questionEl = document.getElementById("question");
+
+  const optionsEl = document.getElementById("options");
+
+
+
+  let index = 0;
+
+  let answers = [];
+
+  let timer = null;
+
+  let hideTimer = null;
+
+  let timeLeft = QUESTION_TIME;
+
+  let examFinished = false;
+
 startBtn.addEventListener("click", () => {
 
-    if (!nameInput.value.trim() || !emailInput.value.trim()) {
-      alert("Please enter your full name and sign in with Google before starting the exam.");
+    const candidateName = nameInput.value.trim();
+    const candidateEmail = normalizeEmail(emailInput.value);
+
+    if (!candidateName || !candidateEmail) {
+      alert("Enter name and email");
       return;
     }
 
-    const normalizedEmail = emailInput.value.trim().toLowerCase();
-    const examKey = "THECOS_FRONT_DESK_EXAM_COMPLETED_" + normalizedEmail;
-
-    if (localStorage.getItem(examKey) === "1") {
-      alert("This Google account has already completed the exam. Only one attempt is allowed.");
+    // Stop the same email from starting the exam again.
+    if (hasUsedAttempt(candidateEmail)) {
+      alert(
+        "This email address has already used the exam. " +
+        "Each candidate is allowed to write the exam only once."
+      );
       return;
     }
+
+    // Lock the attempt BEFORE the first question is shown.
+    // Refreshing, reopening, or tab-switch termination cannot restart it.
+    lockAttempt(candidateEmail);
+
+    nameInput.disabled = true;
+    emailInput.disabled = true;
+    startBtn.disabled = true;
 
     login.classList.add("hidden");
     exam.classList.remove("hidden");
-	if (document.documentElement.requestFullscreen) {
-	  document.documentElement.requestFullscreen();
-}    loadQuestion();
-  });
 
-  function loadQuestion() {
-    const q = QUIZ_QUESTIONS[index];
-
-    questionEl.classList.remove("scrolling-question");
-    void questionEl.offsetWidth;
-    questionEl.textContent = q.question;
-    questionEl.style.visibility = "visible";
-    questionEl.classList.add("scrolling-question");
-
-    optionsEl.innerHTML = "";
-    q.options.forEach((opt, i) => {
-      const label = document.createElement("label");
-      label.className = "block border p-2 rounded cursor-pointer";
-      label.innerHTML = `<input type="radio" name="option" value="${opt}" class="mr-2">${opt}`;
-      optionsEl.appendChild(label);
-    });
-
-    timeLeft = QUESTION_TIME;
-    updateTimer();
-
-    timer = setInterval(() => {
-      timeLeft--;
-      updateTimer();
-      if (timeLeft <= 0) nextQuestion();
-    }, 1000);
-  }
-
-  function updateTimer() {
-    timerEl.textContent = `Time left: ${timeLeft}s`;
-  }
-
-  function nextQuestion() {
-    clearInterval(timer);
-    clearTimeout(hideTimer);
-
-    const selected = document.querySelector('input[name="option"]:checked');
-    answers.push(selected ? selected.value : "Not Answered");
-
-    index++;
-    index < QUIZ_QUESTIONS.length ? loadQuestion() : finishExam();
-  }
-
-  nextBtn.addEventListener("click", nextQuestion);
-
-  //function sendResultsEmail() {
-    //let result = "";
-    //QUIZ_QUESTIONS.forEach((q, i) => {
-      //result += `Q${i+1}: ${q.question}\nAnswer: ${answers[i]}\n\n`;
-    //});
-
-    //emailjs.send("service_8yr4zf5",   
-    //"template_kyqnyrd",  {
-      //student_name: nameInput.value,
-      //student_email: emailInput.value,
-      //answers: result
-    //}).catch(err => console.error("EmailJS error:", err));
-  //}
-  
-  
-  function calculateScore() {
-  let score = 0;
-
-  QUIZ_QUESTIONS.forEach((q, i) => {
-    if (answers[i] === q.correct) {
-      score++;
+    if (document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen().catch(() => {});
     }
+
+    loadQuestion();
   });
 
-  return score;
+
+
+  function loadQuestion() {
+
+    const q = QUIZ_QUESTIONS[index];
+
+
+
+    questionEl.classList.remove("scrolling-question");
+
+    void questionEl.offsetWidth;
+
+    questionEl.textContent = q.question;
+
+    questionEl.style.visibility = "visible";
+
+    questionEl.classList.add("scrolling-question");
+
+
+
+    optionsEl.innerHTML = "";
+
+    q.options.forEach((opt, i) => {
+
+      const label = document.createElement("label");
+
+      label.className = "block border p-2 rounded cursor-pointer";
+
+      label.innerHTML = \`\<input type="radio" name="option" value="${opt}" class="mr-2">${opt}\`;
+
+      optionsEl.appendChild(label);
+
+    });
+
+
+
+    timeLeft = QUESTION_TIME;
+
+    updateTimer();
+
+
+
+    timer = setInterval(() => {
+
+      timeLeft--;
+
+      updateTimer();
+
+      if (timeLeft <= 0) nextQuestion();
+
+    }, 1000);
+
+  }
+
+
+
+  function updateTimer() {
+
+    timerEl.textContent = \`Time left: ${timeLeft}s\`;
+
+  }
+
+
+
+  function nextQuestion() {
+
+    clearInterval(timer);
+
+    clearTimeout(hideTimer);
+
+
+
+    const selected = document.querySelector('input[name="option"]:checked');
+
+    answers.push(selected ? selected.value : "Not Answered");
+
+
+
+    index++;
+
+    index < QUIZ_QUESTIONS.length ? loadQuestion() : finishExam();
+
+  }
+
+
+
+  nextBtn.addEventListener("click", nextQuestion);
+
+
+
+  //function sendResultsEmail() {
+
+    //let result = "";
+
+    //QUIZ_QUESTIONS.forEach((q, i) => {
+
+      //result += \`Q${i+1}: ${q.question}\nAnswer: ${answers[i]}\n\n\`;
+
+    //});
+
+
+
+    //emailjs.send("service_8yr4zf5",  &#x20;
+
+    //"template_kyqnyrd",  {
+
+      //student_name: nameInput.value,
+
+      //student_email: emailInput.value,
+
+      //answers: result
+
+    //}).catch(err => console.error("EmailJS error:", err));
+
+  //}
+
+
+
+
+
+  function calculateScore() {
+
+  let score = 0;
+
+
+
+  QUIZ_QUESTIONS.forEach((q, i) => {
+
+    if (answers[i] === q.correct) {
+
+      score++;
+
+    }
+
+  });
+
+
+
+  return score;
+
 }
 
 
-  async function sendResultsEmail() {
-    let result = "";
 
-    QUIZ_QUESTIONS.forEach((q, i) => {
-      result +=
-`Q${i + 1}: ${q.question}
+
+
+  async function sendResultsEmail() {
+
+    let result = "";
+
+
+
+    QUIZ_QUESTIONS.forEach((q, i) => {
+
+      result +=
+
+\`Q${i + 1}: ${q.question}
+
 Selected Answer: ${answers[i] || "Not Answered"}
+
 Correct Answer: ${q.correct}
 
-`;
-    });
-
-    const score = calculateScore();
-    const total = QUIZ_QUESTIONS.length;
-
-    try {
-      await emailjs.send(
-        "service_8yr4zf5",
-        "template_kyqnyrd",
-        {
-          student_name: nameInput.value.trim(),
-          student_email: emailInput.value.trim(),
-          score: `${score} / ${total}`,
-          answers: result
-        }
-      );
-
-      console.log("EmailJS: results sent successfully.");
-      return true;
-    } catch (err) {
-      console.error("EmailJS error:", err);
-      return false;
-    }
-  }
 
 
-  async function finishExam() {
-    if (examFinished) return;
+\`;
 
-    examFinished = true;
-    clearInterval(timer);
-    clearTimeout(hideTimer);
+    });
 
-    nextBtn.disabled = true;
-    nextBtn.textContent = "Submitting...";
-    document.exitFullscreen?.();
 
-    // Wait until EmailJS confirms that the result was accepted.
-    const emailSent = await sendResultsEmail();
 
-    if (emailSent) {
-      const normalizedEmail = emailInput.value.trim().toLowerCase();
-      localStorage.setItem(
-        "THECOS_FRONT_DESK_EXAM_COMPLETED_" + normalizedEmail,
-        "1"
-      );
+    const score = calculateScore();
+
+    const total = QUIZ_QUESTIONS.length;
+
+
+
+    try {
+
+      await emailjs.send(
+
+        "service_8yr4zf5",
+
+        "template_kyqnyrd",
+
+        {
+
+          student_name: nameInput.value.trim(),
+
+          student_email: emailInput.value.trim(),
+
+          score: \`${score} / ${total}\`,
+
+          answers: result
+
+        }
+
+      );
+
+
+
+      console.log("EmailJS: results sent successfully.");
+
+      return true;
+
+    } catch (err) {
+
+      console.error("EmailJS error:", err);
+
+      return false;
+
+    }
+
+  }
+
+
+
+
+
+  async function finishExam() {
+
+    if (examFinished) return;
+
+
+
+    examFinished = true;
+
+    clearInterval(timer);
+
+    clearTimeout(hideTimer);
+
+
+
+    nextBtn.disabled = true;
+
+    nextBtn.textContent = "Submitting...";
+
+    document.exitFullscreen?.();
+
+
+
+    // Wait until EmailJS confirms that the result was accepted.
+
+    const emailSent = await sendResultsEmail();
+
+
+
+    if (emailSent) {
+      markCompleted(emailInput.value);
 
       exam.classList.add("hidden");
       thankyou.classList.remove("hidden");
       setTimeout(() => location.reload(), 5000);
     } else {
-      examFinished = false;
-      nextBtn.disabled = false;
-      nextBtn.textContent = "Submit Again";
 
-      alert(
-        "The result email could not be sent. " +
-        "Please check your internet connection and click Submit Again. " +
-        "Your answers are still on this page."
-      );
-    }
-  }
+      examFinished = false;
+
+      nextBtn.disabled = false;
+
+      nextBtn.textContent = "Submit Again";
 
 
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden && !examFinished) {
-      alert("Tab switching detected. Exam terminated.");
-      location.reload();
-    }
-  });
+
+      alert(
+
+        "The result email could not be sent. " +
+
+        "Please check your internet connection and click Submit Again. " +
+
+        "Your answers are still on this page."
+
+      );
+
+    }
+
+  }
+
+
+
+
+
+  document.addEventListener("visibilitychange", () => {
+
+    if (document.hidden && !examFinished) {
+
+      alert("Tab switching detected. Exam terminated. Your exam attempt has been used and cannot be restarted.");
+
+      location.reload();
+
+    }
+
+  });
+
+
 
 });
-</script>
 
-</body>
-</html>
+\</script>
+
+
+
+\</body>
+
+\</html>
