@@ -42,10 +42,10 @@
 
   <h1 class="text-2xl font-bold text-center mb-4">Online Quiz</h1>
 
-  <input id="studentName" class="w-full border p-2 mb-3 rounded bg-gray-100" placeholder="Name from Google account" readonly>
+  <input id="studentName" class="w-full border p-2 mb-3 rounded" placeholder="Enter Full Name" required>
   
   <div class="mb-4">
-    <p class="text-sm text-gray-600 mb-2">Sign in with your Google account to start the exam.</p>
+    <p class="text-sm text-gray-600 mb-2">Enter your full name and sign in with your Google account. Your email will be fetched automatically.</p>
     <div id="googleSignInButton" class="flex justify-center"></div>
     <p id="googleStatus" class="text-sm text-center mt-2 text-gray-600"></p>
   </div>
@@ -117,7 +117,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const email = payload.email.trim().toLowerCase();
       const name = payload.name || payload.given_name || "";
 
-      nameInput.value = name;
+      if (!nameInput.value.trim() && name) {
+        nameInput.value = name;
+      }
       emailInput.value = email;
       googleSignedIn = true;
 
@@ -807,7 +809,7 @@ document.addEventListener("DOMContentLoaded", () => {
 startBtn.addEventListener("click", () => {
 
     if (!nameInput.value.trim() || !emailInput.value.trim()) {
-      alert("Please sign in with Google before starting the exam.");
+      alert("Please enter your full name and sign in with Google before starting the exam.");
       return;
     }
 
