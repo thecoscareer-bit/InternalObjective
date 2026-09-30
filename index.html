@@ -6,6 +6,7 @@
 
 <link rel="icon" type="image/png" href="image.png">
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 
 <!-- EmailJS -->
 <script type="text/javascript"
@@ -41,8 +42,16 @@
 
   <h1 class="text-2xl font-bold text-center mb-4">Online Quiz</h1>
 
-  <input id="studentName" class="w-full border p-2 mb-3 rounded" placeholder="Enter Full Name">
-  <input id="studentEmail" type="email" class="w-full border p-2 mb-4 rounded" placeholder="Enter Email Address">
+  <input id="studentName" class="w-full border p-2 mb-3 rounded bg-gray-100" placeholder="Name from Google account" readonly>
+  
+  <div class="mb-4">
+    <p class="text-sm text-gray-600 mb-2">Sign in with your Google account to start the exam.</p>
+    <div id="googleSignInButton" class="flex justify-center"></div>
+    <p id="googleStatus" class="text-sm text-center mt-2 text-gray-600"></p>
+  </div>
+
+  <input id="studentEmail" type="hidden">
+
 
   <button id="startBtn" class="w-full bg-blue-600 text-white py-2 rounded">
     Start Quiz
@@ -82,6 +91,93 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+
+  // Google Identity Services configuration.
+  // Replace this with your Google OAuth Web Client ID.
+  const GOOGLE_CLIENT_ID = "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com";
+
+  let googleSignedIn = false;
+
+  function handleGoogleCredential(response) {
+    try {
+      // Decode the Google ID token payload.
+      const payload = JSON.parse(
+        decodeURIComponent(
+          atob(response.credential.split(".")[1].replace(/-/g, "+").replace(/_/g, "/"))
+            .split("")
+            .map(c => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
+            .join("")
+        )
+      );
+
+      if (!payload.email) {
+        throw new Error("Google did not return an email address.");
+      }
+
+      const email = payload.email.trim().toLowerCase();
+      const name = payload.name || payload.given_name || "";
+
+      nameInput.value = name;
+      emailInput.value = email;
+      googleSignedIn = true;
+
+      const completedKey = "THECOS_FRONT_DESK_EXAM_COMPLETED_" + email;
+
+      if (localStorage.getItem(completedKey) === "1") {
+        googleStatus.textContent =
+          "This Google account has already completed the exam.";
+        googleStatus.className = "text-sm text-center mt-2 text-red-600";
+        startBtn.disabled = true;
+        startBtn.classList.add("opacity-50", "cursor-not-allowed");
+      } else {
+        googleStatus.textContent = "Signed in as " + email;
+        googleStatus.className = "text-sm text-center mt-2 text-green-600";
+        startBtn.disabled = false;
+        startBtn.classList.remove("opacity-50", "cursor-not-allowed");
+      }
+    } catch (err) {
+      console.error("Google sign-in error:", err);
+      googleStatus.textContent = "Could not read your Google account. Please try again.";
+      googleStatus.className = "text-sm text-center mt-2 text-red-600";
+      googleSignedIn = false;
+    }
+  }
+
+  const googleStatus = document.getElementById("googleStatus");
+
+  window.addEventListener("load", () => {
+    if (!window.google || !google.accounts || !google.accounts.id) {
+      googleStatus.textContent =
+        "Google Sign-In could not load. Check your internet connection.";
+      googleStatus.className = "text-sm text-center mt-2 text-red-600";
+      return;
+    }
+
+    if (GOOGLE_CLIENT_ID === "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com") {
+      googleStatus.textContent =
+        "Google Sign-In needs your Google OAuth Client ID to be configured.";
+      googleStatus.className = "text-sm text-center mt-2 text-orange-600";
+      return;
+    }
+
+    google.accounts.id.initialize({
+      client_id: GOOGLE_CLIENT_ID,
+      callback: handleGoogleCredential,
+      auto_select: false
+    });
+
+    google.accounts.id.renderButton(
+      document.getElementById("googleSignInButton"),
+      {
+        theme: "outline",
+        size: "large",
+        text: "signin_with",
+        shape: "rectangular",
+        width: 300
+      }
+    );
+  });
+
 
   const QUESTION_VISIBLE_TIME = 30;
   const QUESTION_TIME = 30;
@@ -711,7 +807,15 @@ document.addEventListener("DOMContentLoaded", () => {
 startBtn.addEventListener("click", () => {
 
     if (!nameInput.value.trim() || !emailInput.value.trim()) {
-      alert("Enter name and email");
+      alert("Please sign in with Google before starting the exam.");
+      return;
+    }
+
+    const normalizedEmail = emailInput.value.trim().toLowerCase();
+    const examKey = "THECOS_FRONT_DESK_EXAM_COMPLETED_" + normalizedEmail;
+
+    if (localStorage.getItem(examKey) === "1") {
+      alert("This Google account has already completed the exam. Only one attempt is allowed.");
       return;
     }
 
@@ -845,6 +949,12 @@ Correct Answer: ${q.correct}
     const emailSent = await sendResultsEmail();
 
     if (emailSent) {
+      const normalizedEmail = emailInput.value.trim().toLowerCase();
+      localStorage.setItem(
+        "THECOS_FRONT_DESK_EXAM_COMPLETED_" + normalizedEmail,
+        "1"
+      );
+
       exam.classList.add("hidden");
       thankyou.classList.remove("hidden");
       setTimeout(() => location.reload(), 5000);
