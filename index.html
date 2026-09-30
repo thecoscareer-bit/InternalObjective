@@ -183,42 +183,32 @@ document.addEventListener("DOMContentLoaded", () => {
   // across different browsers/devices.
   const EXAM_LOCK_URL = "https://script.google.com/macros/s/AKfycbxmoeHcm_3GcKhQwsddroT8rEVa70emwzqBcZFU-sGecMYH4CckBfuOBBDQ6Sk0vO9fMA/exec";
 
-  async function checkAndLockEmail(email, name) {
-    if (!EXAM_LOCK_URL || EXAM_LOCK_URL.includes("PASTE_YOUR_")) {
-      alert("Exam server is not configured. Please contact the administrator.");
-      return false;
-    }
-
-    try {
-      const response = await fetch(EXAM_LOCK_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8"
-        },
-        body: JSON.stringify({
-          action: "start",
-          email: email,
-          name: name
-        })
-      });
-
-      const data = await response.json();
-
-      if (!data.allowed) {
-        alert("This email address has already submitted or started this exam. Only one response is allowed per email ID.");
-        return false;
-      }
-
-      return true;
-    } catch (error) {
-      console.error("Exam server error:", error);
-      alert("Unable to verify your email. Please check your internet connection and try again.");
-      return false;
-    }
+  function checkAndLockEmail(email, name) {
+    return new Promise((resolve) => {
+      if (!EXAM_LOCK_URL || EXAM_LOCK_URL.includes("PASTE_YOUR_")) { alert("Exam server is not configured. Please contact the administrator."); resolve(false); return; }
+      const callbackName = "examCallback_" + Date.now() + "_" + Math.random().toString(36).slice(2);
+      const script = document.createElement("script"); let finished = false;
+      const cleanup = () => { if (script.parentNode) script.parentNode.removeChild(script); try { delete window[callbackName]; } catch (e) {} };
+      const finish = (allowed) => { if (finished) return; finished=true; cleanup(); resolve(allowed); };
+      window[callbackName] = (data) => { if (!data || data.allowed !== true) { alert((data && data.message) || "This email address has already used this exam. Only one response is allowed per email ID."); finish(false); return; } finish(true); };
+      script.onerror = () => { alert("Unable to connect to the exam server. Please check the Apps Script deployment and try again."); finish(false); };
+      const url = new URL(EXAM_LOCK_URL); url.searchParams.set("action","start"); url.searchParams.set("email",email); url.searchParams.set("name",name); url.searchParams.set("callback",callbackName);
+      script.src=url.toString(); document.body.appendChild(script);
+      setTimeout(() => { if (!finished) { alert("The exam server did not respond. Please try again."); finish(false); } },15000);
+    });
   }
 
-
-
+  function recordCompletion(email, name, score) {
+    return new Promise((resolve) => {
+      const callbackName = "completeCallback_" + Date.now() + "_" + Math.random().toString(36).slice(2);
+      const script = document.createElement("script"); let finished=false;
+      const cleanup=()=>{if(script.parentNode)script.parentNode.removeChild(script);try{delete window[callbackName];}catch(e){}};
+      const finish=()=>{if(finished)return;finished=true;cleanup();resolve();};
+      window[callbackName]=()=>finish(); script.onerror=()=>finish();
+      const url=new URL(EXAM_LOCK_URL); url.searchParams.set("action","complete"); url.searchParams.set("email",email); url.searchParams.set("name",name); url.searchParams.set("score",score); url.searchParams.set("callback",callbackName);
+      script.src=url.toString(); document.body.appendChild(script); setTimeout(finish,10000);
+    });
+  }
 
   const QUESTION_VISIBLE_TIME = 30;
 
