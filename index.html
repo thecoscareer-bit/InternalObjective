@@ -794,47 +794,73 @@ startBtn.addEventListener("click", () => {
 }
 
 
-  function sendResultsEmail() {
-  let result = "";
+  async function sendResultsEmail() {
+    let result = "";
 
-  QUIZ_QUESTIONS.forEach((q, i) => {
-    result += 
+    QUIZ_QUESTIONS.forEach((q, i) => {
+      result +=
 `Q${i + 1}: ${q.question}
-Selected Answer: ${answers[i]}
+Selected Answer: ${answers[i] || "Not Answered"}
 Correct Answer: ${q.correct}
 
 `;
-  });
+    });
 
-  const score = calculateScore();
-  const total = QUIZ_QUESTIONS.length;
+    const score = calculateScore();
+    const total = QUIZ_QUESTIONS.length;
 
-  emailjs.send(
-    "service_8yr4zf5",
-    "template_kyqnyrd",
-    {
-      student_name: nameInput.value,
-      student_email: emailInput.value,
-      score: `${score} / ${total}`,
-      answers: result
+    try {
+      await emailjs.send(
+        "service_8yr4zf5",
+        "template_kyqnyrd",
+        {
+          student_name: nameInput.value.trim(),
+          student_email: emailInput.value.trim(),
+          score: `${score} / ${total}`,
+          answers: result
+        }
+      );
+
+      console.log("EmailJS: results sent successfully.");
+      return true;
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      return false;
     }
-  ).catch(err => console.error("EmailJS error:", err));
-}
+  }
 
 
-  function finishExam() {
+  async function finishExam() {
+    if (examFinished) return;
+
     examFinished = true;
     clearInterval(timer);
     clearTimeout(hideTimer);
+
+    nextBtn.disabled = true;
+    nextBtn.textContent = "Submitting...";
     document.exitFullscreen?.();
 
-    sendResultsEmail();
+    // Wait until EmailJS confirms that the result was accepted.
+    const emailSent = await sendResultsEmail();
 
-    exam.classList.add("hidden");
-    thankyou.classList.remove("hidden");
+    if (emailSent) {
+      exam.classList.add("hidden");
+      thankyou.classList.remove("hidden");
+      setTimeout(() => location.reload(), 5000);
+    } else {
+      examFinished = false;
+      nextBtn.disabled = false;
+      nextBtn.textContent = "Submit Again";
 
-    setTimeout(() => location.reload(), 5000);
+      alert(
+        "The result email could not be sent. " +
+        "Please check your internet connection and click Submit Again. " +
+        "Your answers are still on this page."
+      );
+    }
   }
+
 
   document.addEventListener("visibilitychange", () => {
     if (document.hidden && !examFinished) {
