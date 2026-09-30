@@ -1465,39 +1465,40 @@ startBtn.addEventListener("click", async () => {
     const candidateName = nameInput.value.trim();
     const candidateEmail = emailInput.value.trim().toLowerCase();
 
-    if (!candidateName || !candidateEmail) {
-      alert("Enter name and email");
-      return;
+    if (!candidateName) {
+        alert("Please enter your full name.");
+        nameInput.focus();
+        return;
+    }
+
+    if (!candidateEmail) {
+        alert("Please enter your email address.");
+        emailInput.focus();
+        return;
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(candidateEmail)) {
-      alert("Please enter a valid email address.");
-      return;
+        alert("Please enter a valid email address.");
+        emailInput.focus();
+        return;
     }
 
     startBtn.disabled = true;
-    startBtn.textContent = "Checking...";
+    startBtn.textContent = "Starting...";
 
-    const allowed = await checkAndLockEmail(candidateEmail, candidateName);
-
-    if (!allowed) {
-      startBtn.disabled = false;
-      startBtn.textContent = "Start Quiz";
-      return;
-    }
-
+    // Open the exam FIRST.
     login.classList.add("hidden");
     exam.classList.remove("hidden");
 
+    // Fullscreen is optional.
     if (document.documentElement.requestFullscreen) {
-      document.documentElement.requestFullscreen().catch(() => {});
+        document.documentElement.requestFullscreen().catch(() => {});
     }
 
+    // Start first question.
     loadQuestion();
-  });
 
-
-
+});
   function loadQuestion() {
 
     const q = QUIZ_QUESTIONS[index];
