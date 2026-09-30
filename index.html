@@ -1,38 +1,38 @@
-\<!DOCTYPE html>
+<!DOCTYPE html>
 
-\<html lang="en">
+<html lang="en">
 
-\<head>
+<head>
 
-\<meta charset="UTF-8">
+<meta charset="UTF-8">
 
-\<title>Secure Online Quiz - 50 Front Desk Training Questions\</title>
-
-
-
-\<link rel="icon" type="image/png" href="image.png">
-
-\<script src="https\://cdn.tailwindcss.com">\</script>
+<title>Secure Online Quiz - 50 Front Desk Training Questions</title>
 
 
 
-\<!-- EmailJS -->
+<link rel="icon" type="image/png" href="image.png">
 
-\<script type="text/javascript"
-
-  src="https\://cdn.jsdelivr.net/npm/@emailjs/browser\@4/dist/email.min.js">\</script>
+<script src="https://cdn.tailwindcss.com"></script>
 
 
 
-\<script type="text/javascript">
+<!-- EmailJS -->
+
+<script type="text/javascript"
+
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+
+
+<script type="text/javascript">
 
   emailjs.init('AQrOoA9vgEUwlbyma'); // ✅ your public key
 
-\</script>
+</script>
 
 
 
-\<style>
+<style>
 
 @keyframes scrollRightToLeft {
 
@@ -54,118 +54,118 @@
 
 }
 
-\</style>
+</style>
 
-\</head>
-
-
-
-\<body class="bg-slate-100 h-screen flex items-center justify-center overflow-hidden">
+</head>
 
 
 
-\<div class="bg-white shadow-2xl rounded-xl w-full max-w-xl p-6 max-h-[90vh] overflow-hidden">
+<body class="bg-slate-100 h-screen flex items-center justify-center overflow-hidden">
 
 
 
-\<!-- LOGIN -->
-
-\<div id="login">
-
-  \<div class="flex justify-center mb-4">
-
-    \<img src="THECOS_Google_Form_Header.png" class="max-h-24 object-contain">
-
-  \</div>
+<div class="bg-white shadow-2xl rounded-xl w-full max-w-xl p-6 max-h-[90vh] overflow-hidden">
 
 
 
-  \<h1 class="text-2xl font-bold text-center mb-4">Online Quiz\</h1>
+<!-- LOGIN -->
+
+<div id="login">
+
+  <div class="flex justify-center mb-4">
+
+    <img src="THECOS_Google_Form_Header.png" class="max-h-24 object-contain">
+
+  </div>
 
 
 
-  \<input id="studentName" class="w-full border p-2 mb-3 rounded" placeholder="Enter Full Name">
+  <h1 class="text-2xl font-bold text-center mb-4">Online Quiz</h1>
 
-  \<input id="studentEmail" type="email" class="w-full border p-2 mb-2 rounded" placeholder="Enter Email Address">
+
+
+  <input id="studentName" class="w-full border p-2 mb-3 rounded" placeholder="Enter Full Name">
+
+  <input id="studentEmail" type="email" class="w-full border p-2 mb-2 rounded" placeholder="Enter Email Address">
   <p class="text-xs text-red-600 mb-4">
     ⚠️ Each email address can be used for this exam only once on this browser/device.
   </p>
 
 
 
-  \<button id="startBtn" class="w-full bg-blue-600 text-white py-2 rounded">
+  <button id="startBtn" class="w-full bg-blue-600 text-white py-2 rounded">
 
     Start Quiz
 
-  \</button>
+  </button>
 
-\</div>
-
-
-
-\<!-- EXAM -->
-
-\<div id="exam" class="hidden h-full flex flex-col">
+</div>
 
 
 
-  \<div class="flex justify-between mb-3">
+<!-- EXAM -->
 
-    \<span id="timer" class="text-red-600 font-bold">\</span>
-
-    \<span class="text-sm text-gray-500">Tab switching disabled\</span>
-
-  \</div>
+<div id="exam" class="hidden h-full flex flex-col">
 
 
 
-  \<div class="flex-1 overflow-y-auto">
+  <div class="flex justify-between mb-3">
 
-    \<div class="overflow-hidden mb-4">
+    <span id="timer" class="text-red-600 font-bold"></span>
 
-      \<h2 id="question" class="font-semibold text-lg">\</h2>
+    <span class="text-sm text-gray-500">Tab switching disabled</span>
 
-    \</div>
-
-    \<div id="options" class="space-y-2">\</div>
-
-  \</div>
+  </div>
 
 
 
-  \<div class="pt-4 border-t">
+  <div class="flex-1 overflow-y-auto">
 
-    \<button id="nextBtn" class="bg-green-600 text-white px-5 py-2 rounded w-full">
+    <div class="overflow-hidden mb-4">
+
+      <h2 id="question" class="font-semibold text-lg"></h2>
+
+    </div>
+
+    <div id="options" class="space-y-2"></div>
+
+  </div>
+
+
+
+  <div class="pt-4 border-t">
+
+    <button id="nextBtn" class="bg-green-600 text-white px-5 py-2 rounded w-full">
 
       Next
 
-    \</button>
+    </button>
 
-  \</div>
+  </div>
 
-\</div>
-
-
-
-\<!-- THANK YOU -->
-
-\<div id="thankyou" class="hidden text-center">
-
-  \<h1 class="text-2xl font-bold text-green-600 mb-4">✅ Thank You\</h1>
-
-  \<p class="text-gray-700 mb-2">Your exam has been submitted successfully.\</p>
-
-  \<p class="text-gray-500">You may now close this page.\</p>
-
-\</div>
+</div>
 
 
 
-\</div>
+<!-- THANK YOU -->
+
+<div id="thankyou" class="hidden text-center">
+
+  <h1 class="text-2xl font-bold text-green-600 mb-4">✅ Thank You</h1>
+
+  <p class="text-gray-700 mb-2">Your exam has been submitted successfully.</p>
+
+  <p class="text-gray-500">You may now close this page.</p>
+
+</div>
 
 
 
-\<script>
+</div>
+
+
+
+<script>
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
      const QUIZ_QUESTIONS = [
 
-    /\* 1 \*/
+    /* 1 */
 
     {
 
@@ -238,7 +238,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 2 \*/
+    /* 2 */
 
     {
 
@@ -262,7 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 3 \*/
+    /* 3 */
 
     {
 
@@ -286,7 +286,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 4 \*/
+    /* 4 */
 
     {
 
@@ -310,7 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 5 \*/
+    /* 5 */
 
     {
 
@@ -334,7 +334,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 6 \*/
+    /* 6 */
 
     {
 
@@ -358,7 +358,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 7 \*/
+    /* 7 */
 
     {
 
@@ -382,7 +382,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 8 \*/
+    /* 8 */
 
     {
 
@@ -406,7 +406,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 9 \*/
+    /* 9 */
 
     {
 
@@ -430,7 +430,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 10 \*/
+    /* 10 */
 
     {
 
@@ -454,7 +454,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 11 \*/
+    /* 11 */
 
     {
 
@@ -478,7 +478,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 12 \*/
+    /* 12 */
 
     {
 
@@ -502,7 +502,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 13 \*/
+    /* 13 */
 
     {
 
@@ -526,7 +526,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 14 \*/
+    /* 14 */
 
     {
 
@@ -550,7 +550,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 15 \*/
+    /* 15 */
 
     {
 
@@ -574,7 +574,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 16 \*/
+    /* 16 */
 
     {
 
@@ -598,7 +598,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 17 \*/
+    /* 17 */
 
     {
 
@@ -622,7 +622,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 18 \*/
+    /* 18 */
 
     {
 
@@ -646,7 +646,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 19 \*/
+    /* 19 */
 
     {
 
@@ -670,7 +670,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 20 \*/
+    /* 20 */
 
     {
 
@@ -694,7 +694,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 21 \*/
+    /* 21 */
 
     {
 
@@ -718,7 +718,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 22 \*/
+    /* 22 */
 
     {
 
@@ -742,7 +742,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 23 \*/
+    /* 23 */
 
     {
 
@@ -766,7 +766,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 24 \*/
+    /* 24 */
 
     {
 
@@ -790,7 +790,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 25 \*/
+    /* 25 */
 
     {
 
@@ -814,7 +814,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 26 \*/
+    /* 26 */
 
     {
 
@@ -838,7 +838,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 27 \*/
+    /* 27 */
 
     {
 
@@ -862,7 +862,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 28 \*/
+    /* 28 */
 
     {
 
@@ -886,7 +886,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 29 \*/
+    /* 29 */
 
     {
 
@@ -910,7 +910,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 30 \*/
+    /* 30 */
 
     {
 
@@ -934,7 +934,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 31 \*/
+    /* 31 */
 
     {
 
@@ -958,7 +958,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 32 \*/
+    /* 32 */
 
     {
 
@@ -982,7 +982,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 33 \*/
+    /* 33 */
 
     {
 
@@ -1006,7 +1006,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 34 \*/
+    /* 34 */
 
     {
 
@@ -1030,7 +1030,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 35 \*/
+    /* 35 */
 
     {
 
@@ -1054,7 +1054,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 36 \*/
+    /* 36 */
 
     {
 
@@ -1078,7 +1078,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 37 \*/
+    /* 37 */
 
     {
 
@@ -1102,7 +1102,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 38 \*/
+    /* 38 */
 
     {
 
@@ -1126,7 +1126,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 39 \*/
+    /* 39 */
 
     {
 
@@ -1150,7 +1150,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 40 \*/
+    /* 40 */
 
     {
 
@@ -1174,7 +1174,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 41 \*/
+    /* 41 */
 
     {
 
@@ -1198,7 +1198,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 42 \*/
+    /* 42 */
 
     {
 
@@ -1222,7 +1222,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 43 \*/
+    /* 43 */
 
     {
 
@@ -1246,7 +1246,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 44 \*/
+    /* 44 */
 
     {
 
@@ -1270,7 +1270,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 45 \*/
+    /* 45 */
 
     {
 
@@ -1294,7 +1294,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 46 \*/
+    /* 46 */
 
     {
 
@@ -1318,7 +1318,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 47 \*/
+    /* 47 */
 
     {
 
@@ -1342,7 +1342,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 48 \*/
+    /* 48 */
 
     {
 
@@ -1366,7 +1366,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 49 \*/
+    /* 49 */
 
     {
 
@@ -1390,7 +1390,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /\* 50 \*/
+    /* 50 */
 
     {
 
@@ -1521,7 +1521,7 @@ startBtn.addEventListener("click", () => {
 
       label.className = "block border p-2 rounded cursor-pointer";
 
-      label.innerHTML = \`\<input type="radio" name="option" value="${opt}" class="mr-2">${opt}\`;
+      label.innerHTML = `<input type="radio" name="option" value="${opt}" class="mr-2">${opt}`;
 
       optionsEl.appendChild(label);
 
@@ -1551,7 +1551,7 @@ startBtn.addEventListener("click", () => {
 
   function updateTimer() {
 
-    timerEl.textContent = \`Time left: ${timeLeft}s\`;
+    timerEl.textContent = `Time left: ${timeLeft}s`;
 
   }
 
@@ -1589,13 +1589,13 @@ startBtn.addEventListener("click", () => {
 
     //QUIZ_QUESTIONS.forEach((q, i) => {
 
-      //result += \`Q${i+1}: ${q.question}\nAnswer: ${answers[i]}\n\n\`;
+      //result += `Q${i+1}: ${q.question}\nAnswer: ${answers[i]}\n\n`;
 
     //});
 
 
 
-    //emailjs.send("service_8yr4zf5",  &#x20;
+    //emailjs.send("service_8yr4zf5",   
 
     //"template_kyqnyrd",  {
 
@@ -1649,7 +1649,7 @@ startBtn.addEventListener("click", () => {
 
       result +=
 
-\`Q${i + 1}: ${q.question}
+`Q${i + 1}: ${q.question}
 
 Selected Answer: ${answers[i] || "Not Answered"}
 
@@ -1657,7 +1657,7 @@ Correct Answer: ${q.correct}
 
 
 
-\`;
+`;
 
     });
 
@@ -1683,7 +1683,7 @@ Correct Answer: ${q.correct}
 
           student_email: emailInput.value.trim(),
 
-          score: \`${score} / ${total}\`,
+          score: `${score} / ${total}`,
 
           answers: result
 
@@ -1789,10 +1789,10 @@ Correct Answer: ${q.correct}
 
 });
 
-\</script>
+</script>
 
 
 
-\</body>
+</body>
 
-\</html>
+</html>
